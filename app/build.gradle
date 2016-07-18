@@ -13,6 +13,9 @@ android {
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
+        // Enabling multidex support.
+        multiDexEnabled true
+
     }
     buildTypes {
         release {
@@ -25,6 +28,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+    apt rootProject.ext.dependencies["multidex"]
     compile rootProject.ext.dependencies["design"]
     compile rootProject.ext.dependencies["appcompat-v7"]
     compile rootProject.ext.dependencies["recyclerview-v7"]
@@ -39,4 +43,5 @@ dependencies {
     apt rootProject.ext.dependencies["auto-value"]
     provided rootProject.ext.dependencies["auto-value"]
     apt rootProject.ext.dependencies["auto-value-gson"]
+
 }
