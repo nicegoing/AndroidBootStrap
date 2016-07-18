@@ -38,10 +38,12 @@ dependencies {
     compile rootProject.ext.dependencies["glide"]
     compile rootProject.ext.dependencies["eventbus"]
     compile rootProject.ext.dependencies["rxjava"]
+    compile rootProject.ext.dependencies["annotations"]
 
     compile rootProject.ext.dependencies["gson"]
     apt rootProject.ext.dependencies["auto-value"]
     provided rootProject.ext.dependencies["auto-value"]
     apt rootProject.ext.dependencies["auto-value-gson"]
+
 
 }
