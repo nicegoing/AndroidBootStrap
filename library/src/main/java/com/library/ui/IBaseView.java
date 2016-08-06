@@ -10,14 +10,14 @@ package com.library.ui;
  */
 public interface IBaseView {
     /**
-     * 显示一个dialog
+     * show dialog
      *
      * @param dialogType 类型定义在{@link com.library.constant.Constant.DIALOG_TYPE DIALOG_TYPE}
      */
     void displayDialog(int dialogType);
 
     /**
-     * 关闭dialog
+     * close dialog
      *
      * @param dialogType 类型定义在{@link com.library.constant.Constant.DIALOG_TYPE DIALOG_TYPE}
      */
