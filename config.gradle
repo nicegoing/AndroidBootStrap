@@ -8,9 +8,9 @@ ext {
             "versionCode"      : 1,
             "versionName"      : "1.0"]
 
-    dependencies = ["appcompat-v7"   : "com.android.support:appcompat-v7:24.0.0",
-                    "design"         : "com.android.support:design:24.0.0",
-                    "recyclerview-v7": "com.android.support:recyclerview-v7:24.0.0",
+    dependencies = ["appcompat-v7"   : "com.android.support:appcompat-v7:24.1.1",
+                    "design"         : "com.android.support:design:24.1.1",
+                    "recyclerview-v7": "com.android.support:recyclerview-v7:24.1.1",
                     "retrofit"       : "com.squareup.retrofit2:retrofit:2.1.0",
                     "converter-gson" : "com.squareup.retrofit2:converter-gson:2.1.0",
                     "butterknife"    : "com.jakewharton:butterknife:8.2.1",
@@ -19,8 +19,8 @@ ext {
                     "rxjava"         : "io.reactivex:rxjava:1.1.7",
                     "gson"           : "com.google.code.gson:gson:2.7",
                     "auto-value"     : "com.google.auto.value:auto-value:1.2",
-                    "auto-value-gson": "com.ryanharter.auto.value:auto-value-gson:0.3.2-rc1",
+                    "auto-value-gson": "com.ryanharter.auto.value:auto-value-gson:0.4.2",
                     "multidex"       : "com.android.support:multidex:1.0.1",
-                    "annotations": "com.android.support:support-annotations:24.0.0"]
+                    "annotations": "com.android.support:support-annotations:24.1.1"]
 
 }

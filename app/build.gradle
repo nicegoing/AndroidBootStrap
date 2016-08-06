@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'com.jakewharton.hugo'
 apply plugin: 'com.squareup.sqldelight'
 
@@ -26,24 +25,6 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    apt rootProject.ext.dependencies["multidex"]
-    compile rootProject.ext.dependencies["design"]
-    compile rootProject.ext.dependencies["appcompat-v7"]
-    compile rootProject.ext.dependencies["recyclerview-v7"]
-    compile rootProject.ext.dependencies["retrofit"]
-    compile rootProject.ext.dependencies["converter-gson"]
-    compile rootProject.ext.dependencies["butterknife"]
-    compile rootProject.ext.dependencies["glide"]
-    compile rootProject.ext.dependencies["eventbus"]
-    compile rootProject.ext.dependencies["rxjava"]
-    compile rootProject.ext.dependencies["annotations"]
-
-    compile rootProject.ext.dependencies["gson"]
-    apt rootProject.ext.dependencies["auto-value"]
-    provided rootProject.ext.dependencies["auto-value"]
-    apt rootProject.ext.dependencies["auto-value-gson"]
-
-
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':library')
 }
