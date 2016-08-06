@@ -1,4 +1,4 @@
-package com.library.view.activity;
+package com.library.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 

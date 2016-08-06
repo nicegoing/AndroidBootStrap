@@ -1,4 +1,4 @@
-package com.library.view;
+package com.library.ui;
 
 /**
  * View接口的基类

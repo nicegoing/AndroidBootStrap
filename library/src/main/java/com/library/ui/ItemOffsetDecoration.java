@@ -1,4 +1,4 @@
-package com.library.view;
+package com.library.ui;
 
 import android.content.Context;
 import android.graphics.Rect;

@@ -1,4 +1,4 @@
-package com.library.view.fragment;
+package com.library.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
