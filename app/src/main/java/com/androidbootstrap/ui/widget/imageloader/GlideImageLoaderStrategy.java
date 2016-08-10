@@ -93,6 +93,15 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
             if (null != listener) {
                 setListener(builder, listener);
             }
+            if (0 != config.getErrorResId()) {
+                builder.error(config.getErrorResId());
+            }
+            if (0 != config.getPlaceHolderResId()) {
+                builder.placeholder(config.getPlaceHolderResId());
+            }
+            if (null != config.getSize()) {
+                builder.override(config.getSize().getWidth(), config.getSize().getHeight());
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
