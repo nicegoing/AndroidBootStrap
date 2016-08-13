@@ -12,27 +12,15 @@ import com.androidbootstrap.constant.Constants;
  * @date 2016/8/9
  * @since 1.0
  */
-public class SpUtil {
+public class SpHelper {
     private SharedPreferences        sp   = null;
     private SharedPreferences.Editor edit = null;
-    private static Context mContext;
+    private final Context context;
 
-    private static class LazyHolder {
-        private static final SpUtil INSTANCE = new SpUtil(mContext);
-    }
 
-    public static SpUtil getInstance(Context context) {
-        mContext = context;
-        return LazyHolder.INSTANCE;
-    }
-
-    private SpUtil(Context context) {
-        this(context.getApplicationContext().getSharedPreferences(Constants.SP_NAME,
-                Context.MODE_PRIVATE));
-    }
-
-    private SpUtil(SharedPreferences sp) {
-        this.sp = sp;
+    public SpHelper(Context context) {
+        this.context = context;
+        this.sp = context.getApplicationContext().getSharedPreferences(Constants.SP_NAME, Context.MODE_PRIVATE);
         edit = sp.edit();
     }
 

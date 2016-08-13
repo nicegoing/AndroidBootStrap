@@ -28,6 +28,13 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':library')
-    compile  rootProject.ext.dependencies["butterknife"]
+    compile rootProject.ext.dependencies["butterknife"]
     apt rootProject.ext.dependencies["butterknife-compiler"]
+    compile rootProject.ext.dependencies["dagger"]
+    apt rootProject.ext.dependencies["dagger-compiler"]
+    provided rootProject.ext.dependencies["javax-annotation"]
+    compile rootProject.ext.dependencies["gson"]
+    apt rootProject.ext.dependencies["auto-value"]
+    provided rootProject.ext.dependencies["auto-value"]
+    apt rootProject.ext.dependencies["auto-value-gson"]
 }

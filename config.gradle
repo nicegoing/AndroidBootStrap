@@ -19,10 +19,13 @@ ext {
                     "rxjava"              : "io.reactivex:rxjava:1.1.7",
                     "gson"                : "com.google.code.gson:gson:2.7",
                     "auto-value"          : "com.google.auto.value:auto-value:1.2",
-                    "auto-value-gson"     : "com.ryanharter.auto.value:auto-value-gson:0.4.2",
+                    "auto-value-gson"     : "com.ryanharter.auto.value:auto-value-gson:0.3.2-rc1",
                     "multidex"            : "com.android.support:multidex:1.0.1",
                     "annotations"         : "com.android.support:support-annotations:24.1.1",
                     "butterknife"         : "com.jakewharton:butterknife:8.2.1",
-                    "butterknife-compiler": "com.jakewharton:butterknife-compiler:8.2.1"]
+                    "butterknife-compiler": "com.jakewharton:butterknife-compiler:8.2.1",
+                    "dagger"              : "com.google.dagger:dagger:2.5",
+                    "dagger-compiler"     : "com.google.dagger:dagger-compiler:2.5",
+                    "javax-annotation"    : "org.glassfish:javax.annotation:10.0-b28"]
 
 }
