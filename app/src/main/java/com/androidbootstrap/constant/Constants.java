@@ -7,5 +7,10 @@ package com.androidbootstrap.constant;
  * @since 1.0
  */
 public class Constants {
-    public static final String SP_NAME ="SP_NAME";
+    public static final String SP_NAME  = "SP_NAME";
+    public static final String BASE_URL = "http://www.baidu.com";
+
+    public static final class SP_KEY{
+        public static final String EMAIL="email";
+    }
 }

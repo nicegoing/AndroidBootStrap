@@ -1,9 +1,9 @@
 package com.androidbootstrap.inject.component;
 
-import android.content.Context;
-
+import com.androidbootstrap.data.DataManager;
 import com.androidbootstrap.inject.module.AppModule;
-import com.androidbootstrap.util.SpHelper;
+
+import javax.inject.Singleton;
 
 import dagger.Component;
 
@@ -13,10 +13,9 @@ import dagger.Component;
  * @date 2016/8/12
  * @since 1.0
  */
+@Singleton
 @Component(modules = AppModule.class)
 public interface AppComponent {
 
-    Context getContenxt();
-
-    SpHelper getSpHelper();
+    void inject(DataManager dataManager);
 }

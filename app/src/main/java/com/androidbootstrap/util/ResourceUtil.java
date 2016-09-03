@@ -1,12 +1,11 @@
 package com.androidbootstrap.util;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
 import android.support.annotation.StringRes;
 import android.support.v4.content.res.ResourcesCompat;
-
-import com.androidbootstrap.BaseApplication;
 
 /**
  * @author puhanhui
@@ -15,9 +14,15 @@ import com.androidbootstrap.BaseApplication;
  * @since 1.0
  */
 public class ResourceUtil {
+    private static Context context;
+
+    public static void init(Context context) {
+        ResourceUtil.context = context;
+    }
+
 
     public static Resources getResources() {
-        return BaseApplication.getContext().getResources();
+        return context.getResources();
     }
 
     public static String getString(@StringRes int resourceId) {

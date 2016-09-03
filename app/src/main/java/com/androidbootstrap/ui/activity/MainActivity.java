@@ -14,19 +14,23 @@ import android.view.View;
 import android.widget.Button;
 
 import com.androidbootstrap.R;
+import com.androidbootstrap.ui.activity.i.IMainView;
 import com.androidbootstrap.ui.fragment.InboxFragment;
 import com.androidbootstrap.util.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import presenter.MainPresenter;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements IMainView, NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.btn_show)
     Button btnShow;
     @BindView(R.id.btn_cancel)
     Button btnCancel;
+
+    MainPresenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         initEvent();
+        mainPresenter=new MainPresenter(this);
     }
 
     private void initEvent() {
@@ -131,5 +136,15 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void writeEmail(String email) {
+
+    }
+
+    @Override
+    public String readEmail() {
+        return null;
     }
 }

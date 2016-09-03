@@ -32,9 +32,11 @@ public class AppModule {
         return context;
     }
 
+
+
     @Provides
     @Singleton
-    SpHelper provideSpHelper() {
+    SpHelper provideSpHelper(Context context) {
         return new SpHelper(context);
     }
 

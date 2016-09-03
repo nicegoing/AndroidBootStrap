@@ -1,5 +1,8 @@
 package com.androidbootstrap;
 
+import com.androidbootstrap.inject.component.DaggerAppComponent;
+import com.androidbootstrap.inject.module.AppModule;
+
 /**
  * @author puhanhui
  * @version 1.0
@@ -10,6 +13,6 @@ public class MyApplication extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        this.context=this;
+        DaggerAppComponent.builder().appModule(new AppModule(this)).build();
     }
 }

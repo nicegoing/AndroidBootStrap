@@ -1,9 +1,8 @@
 package com.androidbootstrap.util;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
-
-import com.androidbootstrap.BaseApplication;
 
 /**
  * @author puhanhui
@@ -12,11 +11,16 @@ import com.androidbootstrap.BaseApplication;
  * @since 1.0
  */
 public class ToastUtil {
-    private static Toast toast;
+    private static Toast   toast;
+    private static Context context;
+
+    public ToastUtil(Context context) {
+        this.context = context;
+    }
 
     public static void show(@NonNull String message) {
         if (toast == null) {
-            toast = Toast.makeText(BaseApplication.getContext(), message, Toast.LENGTH_SHORT);
+            toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
         } else {
             toast.show();
         }
