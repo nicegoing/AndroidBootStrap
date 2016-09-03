@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.androidbootstrap.R;
+import com.androidbootstrap.ui.fragment.InboxFragment;
 import com.androidbootstrap.util.ToastUtil;
 
 import butterknife.BindView;
@@ -113,8 +114,8 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
+        if (id == R.id.nav_inbox) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new InboxFragment()).commit();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

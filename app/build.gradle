@@ -28,6 +28,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':library')
+    testCompile 'junit:junit:4.12'
     compile rootProject.ext.dependencies["butterknife"]
     apt rootProject.ext.dependencies["butterknife-compiler"]
     compile rootProject.ext.dependencies["dagger"]
@@ -37,4 +38,5 @@ dependencies {
     apt rootProject.ext.dependencies["auto-value"]
     provided rootProject.ext.dependencies["auto-value"]
     apt rootProject.ext.dependencies["auto-value-gson"]
+    provided  rootProject.ext.dependencies["auto-value-gson"]
 }

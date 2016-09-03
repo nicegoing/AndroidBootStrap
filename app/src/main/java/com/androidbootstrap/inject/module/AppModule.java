@@ -2,10 +2,10 @@ package com.androidbootstrap.inject.module;
 
 import android.content.Context;
 
+import com.androidbootstrap.data.base.MyAdapterFactory;
 import com.androidbootstrap.util.SpHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.ryanharter.auto.value.gson.AutoValueGsonTypeAdapterFactory;
 
 import javax.inject.Singleton;
 
@@ -42,7 +42,7 @@ public class AppModule {
     @Singleton
     Gson provideGson() {
         return new GsonBuilder()
-                .registerTypeAdapterFactory(new AutoValueGsonTypeAdapterFactory())
+                .registerTypeAdapterFactory(MyAdapterFactory.create())
                 .create();
     }
 
