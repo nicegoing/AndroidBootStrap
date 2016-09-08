@@ -1,6 +1,6 @@
 package com.androidbootstrap.ui.activity;
 
-import com.library.ui.activity.BaseActivity;
+import com.androidbootstrap.ui.base.BaseActivity;
 
 /**
  * @author puhanhui

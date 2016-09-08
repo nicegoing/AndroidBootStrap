@@ -17,7 +17,6 @@ public class SpHelper {
     private SharedPreferences.Editor edit = null;
     private final Context context;
 
-
     public SpHelper(Context context) {
         this.context = context;
         this.sp = context.getApplicationContext().getSharedPreferences(Constants.SP_NAME, Context.MODE_PRIVATE);

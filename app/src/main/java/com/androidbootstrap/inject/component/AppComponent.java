@@ -1,5 +1,7 @@
 package com.androidbootstrap.inject.component;
 
+import android.support.annotation.NonNull;
+
 import com.androidbootstrap.data.DataManager;
 import com.androidbootstrap.inject.module.AppModule;
 
@@ -16,6 +18,18 @@ import dagger.Component;
 @Singleton
 @Component(modules = AppModule.class)
 public interface AppComponent {
+    DataManager getDataManager();
 
-    void inject(DataManager dataManager);
+
+     class Instance {
+        private static AppComponent sComponent;
+
+        public static void init(@NonNull AppComponent component) {
+            sComponent = component;
+        }
+
+        public static AppComponent get() {
+            return sComponent;
+        }
+    }
 }

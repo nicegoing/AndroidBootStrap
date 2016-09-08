@@ -18,6 +18,10 @@ public class ToastUtil {
         this.context = context;
     }
 
+    public static void init(Context application) {
+        context = application;
+    }
+
     public static void show(@NonNull String message) {
         if (toast == null) {
             toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
@@ -31,4 +35,5 @@ public class ToastUtil {
             toast.cancel();
         }
     }
+
 }

@@ -1,7 +1,9 @@
 package com.androidbootstrap;
 
+import com.androidbootstrap.inject.component.AppComponent;
 import com.androidbootstrap.inject.component.DaggerAppComponent;
 import com.androidbootstrap.inject.module.AppModule;
+import com.androidbootstrap.util.ToastUtil;
 
 /**
  * @author puhanhui
@@ -10,9 +12,11 @@ import com.androidbootstrap.inject.module.AppModule;
  * @since 1.0
  */
 public class MyApplication extends BaseApplication {
+
     @Override
     public void onCreate() {
         super.onCreate();
-        DaggerAppComponent.builder().appModule(new AppModule(this)).build();
+        ToastUtil.init(this);
+        AppComponent.Instance.init(DaggerAppComponent.builder().appModule(new AppModule(this)).build());
     }
 }

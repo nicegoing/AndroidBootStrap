@@ -1,10 +1,14 @@
-package com.library.ui.activity;
+package com.androidbootstrap.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+
+import com.androidbootstrap.inject.component.ActivityComponent;
+import com.androidbootstrap.inject.component.AppComponent;
+import com.androidbootstrap.inject.component.DaggerActivityComponent;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
@@ -18,11 +22,13 @@ import rx.subscriptions.CompositeSubscription;
 public abstract class BaseActivity extends AppCompatActivity {
 
 
-    private CompositeSubscription mCompositeSubscription;
+    private   CompositeSubscription mCompositeSubscription;
+    protected ActivityComponent     activityComponent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activityComponent = DaggerActivityComponent.builder().appComponent(AppComponent.Instance.get()).build();
         setContentView(getLayoutId());//抽取出来设置LayoutId
         initView(savedInstanceState);
         initData(savedInstanceState);
@@ -31,13 +37,13 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract @LayoutRes int getLayoutId();
 
-    private void initView(@Nullable Bundle savedInstanceState) {
+    protected void initView(@Nullable Bundle savedInstanceState) {
     }
 
-    private void initData(@Nullable Bundle savedInstanceState) {
+    protected void initData(@Nullable Bundle savedInstanceState) {
     }
 
-    private void initEvent(@Nullable Bundle savedInstanceState) {
+    protected void initEvent(@Nullable Bundle savedInstanceState) {
     }
 
 

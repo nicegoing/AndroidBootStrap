@@ -2,6 +2,8 @@ package com.androidbootstrap.inject.module;
 
 import android.content.Context;
 
+import com.androidbootstrap.data.DataManager;
+import com.androidbootstrap.data.DataManagerImpl;
 import com.androidbootstrap.data.base.MyAdapterFactory;
 import com.androidbootstrap.util.SpHelper;
 import com.google.gson.Gson;
@@ -39,6 +41,13 @@ public class AppModule {
     SpHelper provideSpHelper(Context context) {
         return new SpHelper(context);
     }
+
+    @Provides
+    @Singleton
+    DataManager provideDataManager(SpHelper spHelper) {
+        return new DataManagerImpl(spHelper);
+    }
+
 
     @Provides
     @Singleton

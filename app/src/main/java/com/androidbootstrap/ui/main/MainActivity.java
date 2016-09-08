@@ -1,12 +1,12 @@
-package com.androidbootstrap.ui.activity;
+package com.androidbootstrap.ui.main;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,29 +14,37 @@ import android.view.View;
 import android.widget.Button;
 
 import com.androidbootstrap.R;
-import com.androidbootstrap.ui.activity.i.IMainView;
+import com.androidbootstrap.ui.base.BaseActivity;
 import com.androidbootstrap.ui.fragment.InboxFragment;
 import com.androidbootstrap.util.ToastUtil;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import presenter.MainPresenter;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements IMainView, NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.btn_show)
-    Button btnShow;
+    Button        btnShow;
     @BindView(R.id.btn_cancel)
-    Button btnCancel;
-
+    Button        btnCancel;
+    @Inject
     MainPresenter mainPresenter;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initView(@Nullable Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
         ButterKnife.bind(this);
+        activityComponent.inject(this);
+        mainPresenter.attachView(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -58,24 +66,24 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        initEvent();
-        mainPresenter=new MainPresenter(this);
+
+
     }
 
-    private void initEvent() {
+    @Override
+    protected void initEvent(@Nullable Bundle savedInstanceState) {
+        super.initEvent(savedInstanceState);
         btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ToastUtil.show("OOOOOOOOOOOOOO");
-
+                btnShow.setText(mainPresenter.readEmail());
             }
         });
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ToastUtil.cancel();
-
+                mainPresenter.writeEmail("s@gmail.com");
             }
         });
 
@@ -146,5 +154,15 @@ public class MainActivity extends AppCompatActivity
     @Override
     public String readEmail() {
         return null;
+    }
+
+    @Override
+    public void displayDialog(int dialogType) {
+
+    }
+
+    @Override
+    public void hideDialog(int... dialogType) {
+
     }
 }
