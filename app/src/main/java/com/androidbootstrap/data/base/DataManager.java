@@ -1,6 +1,7 @@
 package com.androidbootstrap.data.base;
 
 import com.androidbootstrap.data.bean.Person;
+import com.androidbootstrap.rx.ApiResponse;
 import com.androidbootstrap.util.SpHelper;
 
 import rx.Observable;
@@ -22,5 +23,5 @@ public interface DataManager {
 
     String readEmail();
 
-    Observable<Person> getProfile();
+    Observable<ApiResponse<Person>> getProfile();
 }

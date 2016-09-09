@@ -14,7 +14,6 @@ import com.library.ui.IView;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
-import rx.subscriptions.CompositeSubscription;
 
 /**
  * @author puhanhui
@@ -25,7 +24,6 @@ import rx.subscriptions.CompositeSubscription;
 public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivity implements IView {
     @Inject
     protected T                     presenter;
-    private   CompositeSubscription mCompositeSubscription;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

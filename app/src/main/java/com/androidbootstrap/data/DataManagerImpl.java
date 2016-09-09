@@ -4,6 +4,7 @@ import com.androidbootstrap.constant.Constants;
 import com.androidbootstrap.data.base.DataManager;
 import com.androidbootstrap.data.bean.Person;
 import com.androidbootstrap.data.retrofit.RetrofitService;
+import com.androidbootstrap.rx.ApiResponse;
 import com.androidbootstrap.util.SpHelper;
 
 import rx.Observable;
@@ -41,7 +42,7 @@ public class DataManagerImpl implements DataManager {
     }
 
     @Override
-    public Observable<Person> getProfile() {
+    public Observable<ApiResponse<Person>> getProfile() {
         return retrofitService.getProfile()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
