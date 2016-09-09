@@ -8,9 +8,11 @@ package com.androidbootstrap.constant;
  */
 public class Constants {
     public static final String SP_NAME  = "SP_NAME";
-    public static final String BASE_URL = "http://www.baidu.com";
+    public static final String BASE_URL = "http://10.37.5.177:8080/";
 
-    public static final class SP_KEY{
-        public static final String EMAIL="email";
+    public static final String PERSON_URL = "person.json";
+
+    public static final class SP_KEY {
+        public static final String EMAIL = "email";
     }
 }

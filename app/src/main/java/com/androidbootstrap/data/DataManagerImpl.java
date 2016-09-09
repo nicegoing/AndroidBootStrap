@@ -1,7 +1,11 @@
 package com.androidbootstrap.data;
 
 import com.androidbootstrap.constant.Constants;
+import com.androidbootstrap.data.bean.Person;
+import com.androidbootstrap.data.retrofit.RetrofitService;
 import com.androidbootstrap.util.SpHelper;
+
+import retrofit2.Call;
 
 /**
  * @author puhanhui
@@ -11,9 +15,10 @@ import com.androidbootstrap.util.SpHelper;
  */
 public class DataManagerImpl implements DataManager {
     SpHelper spHelper;
-
-    public DataManagerImpl(SpHelper spHelper) {
+    RetrofitService retrofitService;
+    public DataManagerImpl(SpHelper spHelper, RetrofitService retrofitService) {
         this.spHelper = spHelper;
+        this.retrofitService=retrofitService;
     }
 
     @Override
@@ -29,5 +34,10 @@ public class DataManagerImpl implements DataManager {
     @Override
     public String readEmail() {
         return getSharePreferences().getString(Constants.SP_KEY.EMAIL);
+    }
+
+    @Override
+    public Call<Person> getProfile() {
+        return retrofitService.getProfile();
     }
 }

@@ -1,6 +1,9 @@
 package com.androidbootstrap.data;
 
+import com.androidbootstrap.data.bean.Person;
 import com.androidbootstrap.util.SpHelper;
+
+import retrofit2.Call;
 
 /**
  * 该类用于管理所有的数据
@@ -18,4 +21,6 @@ public interface DataManager {
     void writeEmail(String email);
 
     String readEmail();
+
+    Call<Person> getProfile();
 }

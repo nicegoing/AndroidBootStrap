@@ -1,5 +1,6 @@
 package com.androidbootstrap.ui.main;
 
+import com.androidbootstrap.data.bean.Person;
 import com.library.ui.IBaseView;
 
 /**
@@ -12,4 +13,6 @@ public interface IMainView extends IBaseView {
     void writeEmail(String email);
 
     String readEmail();
+
+    void setProfile(Person Person);
 }

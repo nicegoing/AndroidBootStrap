@@ -12,8 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.androidbootstrap.R;
+import com.androidbootstrap.data.bean.Person;
 import com.androidbootstrap.ui.base.BaseActivity;
 import com.androidbootstrap.ui.fragment.InboxFragment;
 import com.androidbootstrap.util.ToastUtil;
@@ -27,9 +29,12 @@ public class MainActivity extends BaseActivity
         implements IMainView, NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.btn_show)
-    Button        btnShow;
+    Button   btnShow;
     @BindView(R.id.btn_cancel)
-    Button        btnCancel;
+    Button   btnCancel;
+    @BindView(R.id.tv_info)
+    TextView tvInfo;
+
     @Inject
     MainPresenter mainPresenter;
 
@@ -77,6 +82,7 @@ public class MainActivity extends BaseActivity
             @Override
             public void onClick(View view) {
                 btnShow.setText(mainPresenter.readEmail());
+                mainPresenter.getProfile();
             }
         });
 
@@ -154,6 +160,11 @@ public class MainActivity extends BaseActivity
     @Override
     public String readEmail() {
         return null;
+    }
+
+    @Override
+    public void setProfile(Person person) {
+        tvInfo.setText(person.toString());
     }
 
     @Override
