@@ -16,27 +16,30 @@ import android.widget.TextView;
 
 import com.androidbootstrap.R;
 import com.androidbootstrap.data.bean.Person;
+import com.androidbootstrap.inject.component.ActivityComponent;
 import com.androidbootstrap.ui.base.BaseActivity;
 import com.androidbootstrap.ui.fragment.InboxFragment;
 import com.androidbootstrap.util.ToastUtil;
 
-import javax.inject.Inject;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity
+public class MainActivity extends BaseActivity<MainPresenter>
         implements IMainView, NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.btn_show)
-    Button   btnShow;
+    Button               btnShow;
     @BindView(R.id.btn_cancel)
-    Button   btnCancel;
+    Button               btnCancel;
     @BindView(R.id.tv_info)
-    TextView tvInfo;
-
-    @Inject
-    MainPresenter mainPresenter;
+    TextView             tvInfo;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+    @BindView(R.id.toolbar)
+    Toolbar              toolbar;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout         drawer;
+    @BindView(R.id.nav_view)
+    NavigationView       navigationView;
 
 
     @Override
@@ -45,15 +48,28 @@ public class MainActivity extends BaseActivity
     }
 
     @Override
+    protected void setActivityComponent(ActivityComponent activityComponent) {
+        activityComponent.inject(this);
+    }
+
+
+    @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        ButterKnife.bind(this);
-        activityComponent.inject(this);
-        mainPresenter.attachView(this);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+    }
+
+    @Override
+    protected void initEvent(@Nullable Bundle savedInstanceState) {
+        super.initEvent(savedInstanceState);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,33 +79,17 @@ public class MainActivity extends BaseActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-
-    }
-
-    @Override
-    protected void initEvent(@Nullable Bundle savedInstanceState) {
-        super.initEvent(savedInstanceState);
         btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                btnShow.setText(mainPresenter.readEmail());
-                mainPresenter.getProfile();
+                presenter.getProfile();
             }
         });
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainPresenter.writeEmail("s@gmail.com");
             }
         });
 

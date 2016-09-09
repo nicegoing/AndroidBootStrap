@@ -3,6 +3,7 @@ package com.androidbootstrap;
 import com.androidbootstrap.inject.component.AppComponent;
 import com.androidbootstrap.inject.component.DaggerAppComponent;
 import com.androidbootstrap.inject.module.AppModule;
+import com.androidbootstrap.util.ResourceUtil;
 import com.androidbootstrap.util.ToastUtil;
 
 /**
@@ -17,6 +18,7 @@ public class MyApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         ToastUtil.init(this);
+        ResourceUtil.init(this);
         AppComponent.Instance.init(DaggerAppComponent.builder().appModule(new AppModule(this)).build());
     }
 }

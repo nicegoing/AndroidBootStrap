@@ -1,6 +1,6 @@
 package com.androidbootstrap.ui.base;
 
-import com.library.ui.IBaseView;
+import com.library.ui.IView;
 
 /**
  * @author puhanhui
@@ -8,9 +8,9 @@ import com.library.ui.IBaseView;
  * @date 2016/9/3
  * @since 1.0
  */
-public  interface IPresenter<V extends IBaseView> {
+public  interface IPresenter<V extends IView> {
 
-    void attachView(V iBaseView);
+    void attachView(V view);
 
     void detachView();
 }

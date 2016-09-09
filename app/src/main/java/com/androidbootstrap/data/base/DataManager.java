@@ -1,9 +1,9 @@
-package com.androidbootstrap.data;
+package com.androidbootstrap.data.base;
 
 import com.androidbootstrap.data.bean.Person;
 import com.androidbootstrap.util.SpHelper;
 
-import retrofit2.Call;
+import rx.Observable;
 
 /**
  * 该类用于管理所有的数据
@@ -22,5 +22,5 @@ public interface DataManager {
 
     String readEmail();
 
-    Call<Person> getProfile();
+    Observable<Person> getProfile();
 }

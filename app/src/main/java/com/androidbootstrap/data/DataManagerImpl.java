@@ -1,11 +1,14 @@
 package com.androidbootstrap.data;
 
 import com.androidbootstrap.constant.Constants;
+import com.androidbootstrap.data.base.DataManager;
 import com.androidbootstrap.data.bean.Person;
 import com.androidbootstrap.data.retrofit.RetrofitService;
 import com.androidbootstrap.util.SpHelper;
 
-import retrofit2.Call;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * @author puhanhui
@@ -14,11 +17,12 @@ import retrofit2.Call;
  * @since 1.0
  */
 public class DataManagerImpl implements DataManager {
-    SpHelper spHelper;
+    SpHelper        spHelper;
     RetrofitService retrofitService;
+
     public DataManagerImpl(SpHelper spHelper, RetrofitService retrofitService) {
         this.spHelper = spHelper;
-        this.retrofitService=retrofitService;
+        this.retrofitService = retrofitService;
     }
 
     @Override
@@ -37,7 +41,9 @@ public class DataManagerImpl implements DataManager {
     }
 
     @Override
-    public Call<Person> getProfile() {
-        return retrofitService.getProfile();
+    public Observable<Person> getProfile() {
+        return retrofitService.getProfile()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }

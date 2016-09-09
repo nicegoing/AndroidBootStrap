@@ -10,7 +10,7 @@ public abstract class Person {
 
     public abstract String gender();
 
-    public abstract String age();
+    public abstract int age();
 
     public abstract Address address();
 

@@ -2,7 +2,7 @@ package com.androidbootstrap.inject.component;
 
 import android.support.annotation.NonNull;
 
-import com.androidbootstrap.data.DataManager;
+import com.androidbootstrap.data.base.DataManager;
 import com.androidbootstrap.inject.module.AppModule;
 
 import javax.inject.Singleton;

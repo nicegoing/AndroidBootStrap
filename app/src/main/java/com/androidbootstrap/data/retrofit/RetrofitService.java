@@ -3,8 +3,8 @@ package com.androidbootstrap.data.retrofit;
 import com.androidbootstrap.constant.Constants;
 import com.androidbootstrap.data.bean.Person;
 
-import retrofit2.Call;
 import retrofit2.http.GET;
+import rx.Observable;
 
 /**
  * @author puhanhui
@@ -15,5 +15,5 @@ import retrofit2.http.GET;
 public interface RetrofitService {
 
     @GET(Constants.PERSON_URL)
-    Call<Person> getProfile();
+    Observable<Person> getProfile();
 }

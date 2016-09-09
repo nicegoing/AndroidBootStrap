@@ -9,8 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import com.androidbootstrap.inject.component.ActivityComponent;
 import com.androidbootstrap.inject.component.AppComponent;
 import com.androidbootstrap.inject.component.DaggerActivityComponent;
+import com.library.ui.IView;
 
-import rx.Subscription;
+import javax.inject.Inject;
+
+import butterknife.ButterKnife;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -19,23 +22,31 @@ import rx.subscriptions.CompositeSubscription;
  * @date 2016/8/6
  * @since 1.0
  */
-public abstract class BaseActivity extends AppCompatActivity {
-
-
+public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivity implements IView {
+    @Inject
+    protected T                     presenter;
     private   CompositeSubscription mCompositeSubscription;
-    protected ActivityComponent     activityComponent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityComponent = DaggerActivityComponent.builder().appComponent(AppComponent.Instance.get()).build();
+        ActivityComponent activityComponent = DaggerActivityComponent.builder().appComponent(AppComponent.Instance.get()).build();
+        setActivityComponent(activityComponent);
         setContentView(getLayoutId());//抽取出来设置LayoutId
+        ButterKnife.bind(this);
+        if (presenter != null) {
+            presenter.attachView(this);
+        }
         initView(savedInstanceState);
         initData(savedInstanceState);
         initEvent(savedInstanceState);
     }
 
-    protected abstract @LayoutRes int getLayoutId();
+    protected abstract void setActivityComponent(ActivityComponent activityComponent);
+
+    protected abstract
+    @LayoutRes
+    int getLayoutId();
 
     protected void initView(@Nullable Bundle savedInstanceState) {
     }
@@ -47,30 +58,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
-    public CompositeSubscription getCompositeSubscription() {
-        if (this.mCompositeSubscription == null) {
-            this.mCompositeSubscription = new CompositeSubscription();
-        }
-
-        return this.mCompositeSubscription;
-    }
-
-
-    public void addSubscription(Subscription s) {
-        if (this.mCompositeSubscription == null) {
-            this.mCompositeSubscription = new CompositeSubscription();
-        }
-
-        this.mCompositeSubscription.add(s);
-    }
-
     @CallSuper
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (this.mCompositeSubscription != null) {
-            this.mCompositeSubscription.unsubscribe();
+        if (presenter != null) {
+            presenter.detachView();
         }
     }
+
 
 }

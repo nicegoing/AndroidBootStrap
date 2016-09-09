@@ -8,7 +8,7 @@ package com.library.ui;
  * @date 2016/8/6
  * @since 1.0
  */
-public interface IBaseView {
+public interface IBaseView extends IView{
     /**
      * show dialog
      *

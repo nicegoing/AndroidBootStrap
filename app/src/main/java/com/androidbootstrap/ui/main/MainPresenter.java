@@ -7,9 +7,8 @@ import com.androidbootstrap.ui.base.BasePresenter;
 
 import javax.inject.Inject;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import rx.Subscriber;
+import rx.Subscription;
 
 /**
  * @author puhanhui
@@ -31,16 +30,23 @@ public class MainPresenter extends BasePresenter<IMainView> {
     }
 
     public void getProfile() {
-        dataManager.getProfile().enqueue(new Callback<Person>() {
+        Subscription subscription = dataManager.getProfile().subscribe(new Subscriber<Person>() {
             @Override
-            public void onResponse(Call<Person> call, Response<Person> response) {
-                getView().setProfile(response.body());
+            public void onCompleted() {
+
             }
 
             @Override
-            public void onFailure(Call<Person> call, Throwable t) {
-                Log.i("MainActiviy", t.getMessage());
+            public void onError(Throwable e) {
+                Log.i("MainActiviy", e.getMessage());
+
+            }
+
+            @Override
+            public void onNext(Person person) {
+                getView().setProfile(person);
             }
         });
+        addSubscribe(subscription);
     }
 }
