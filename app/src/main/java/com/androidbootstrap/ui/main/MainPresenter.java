@@ -40,7 +40,7 @@ public class MainPresenter extends BasePresenter<IMainView> {
 
             @Override
             public void onError(Throwable e) {
-                Log.i("MainActiviy", e.getMessage());
+                Log.i("error", e.getMessage());
 
             }
 

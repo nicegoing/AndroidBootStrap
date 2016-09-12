@@ -7,9 +7,13 @@ import com.androidbootstrap.data.DataManagerImpl;
 import com.androidbootstrap.data.base.AutoValueGson_MyAdapterFactory;
 import com.androidbootstrap.data.base.DataManager;
 import com.androidbootstrap.data.retrofit.RetrofitService;
+import com.androidbootstrap.db.DBOpenHelper;
 import com.androidbootstrap.util.SpHelper;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.squareup.sqlbrite.BriteDatabase;
+import com.squareup.sqlbrite.SqlBrite;
 
 import java.util.concurrent.TimeUnit;
 
@@ -23,6 +27,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.schedulers.Schedulers;
 
 /**
  * @author puhanhui
@@ -52,8 +57,23 @@ public class AppModule {
 
     @Provides
     @Singleton
-    DataManager provideDataManager(SpHelper spHelper, RetrofitService retrofitService) {
-        return new DataManagerImpl(spHelper, retrofitService);
+    DBOpenHelper ProvideDbOpenHelper(Context context) {
+        return new DBOpenHelper(context);
+    }
+
+    @Provides
+    @Singleton
+    BriteDatabase ProvideBriteDb(DBOpenHelper dbOpenHelper) {
+        BriteDatabase briteDatabase= SqlBrite.create().wrapDatabaseHelper(dbOpenHelper, Schedulers.io());
+        briteDatabase.setLoggingEnabled(true);
+        return briteDatabase;
+    }
+
+
+    @Provides
+    @Singleton
+    DataManager provideDataManager(SpHelper spHelper, RetrofitService retrofitService, BriteDatabase briteDatabase) {
+        return new DataManagerImpl(spHelper, retrofitService, briteDatabase);
     }
 
 
@@ -74,6 +94,7 @@ public class AppModule {
                 .readTimeout(Constants.HTTP_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
                 .connectTimeout(Constants.HTTP_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
                 .addInterceptor(loggingInterceptor)
+                .addNetworkInterceptor(new StethoInterceptor())
                 .build();
 
         return okHttpClient;
@@ -83,7 +104,7 @@ public class AppModule {
     @Provides
     @Singleton
     @Named("noRxJava")
-    Retrofit provideRetrofit(Gson gson,OkHttpClient okHttpClient) {
+    Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
         return new Retrofit.Builder().baseUrl(Constants.BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -93,7 +114,7 @@ public class AppModule {
     @Provides
     @Singleton
     @Named("rxJava")
-    Retrofit ProvideRetrofitWithRxJava(Gson gson,OkHttpClient okHttpClient) {
+    Retrofit ProvideRetrofitWithRxJava(Gson gson, OkHttpClient okHttpClient) {
         return new Retrofit.Builder().baseUrl(Constants.BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))

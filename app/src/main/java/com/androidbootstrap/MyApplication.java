@@ -5,6 +5,7 @@ import com.androidbootstrap.inject.component.DaggerAppComponent;
 import com.androidbootstrap.inject.module.AppModule;
 import com.androidbootstrap.util.ResourceUtil;
 import com.androidbootstrap.util.ToastUtil;
+import com.facebook.stetho.Stetho;
 
 /**
  * @author puhanhui
@@ -20,5 +21,6 @@ public class MyApplication extends BaseApplication {
         ToastUtil.init(this);
         ResourceUtil.init(this);
         AppComponent.Instance.init(DaggerAppComponent.builder().appModule(new AppModule(this)).build());
+        Stetho.initializeWithDefaults(this);
     }
 }

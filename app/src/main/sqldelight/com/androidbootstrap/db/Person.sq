@@ -1,0 +1,11 @@
+CREATE TABLE Person(
+  _id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  gender TEXT NOT NULL,
+  age TEXT NOT NULL
+);
+
+select_all:
+select * from Person;
+insert_all:
+insert into Person (name,gender,age) values (1,2,3);
