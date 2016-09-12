@@ -36,7 +36,6 @@ public class MainPresenter extends BasePresenter<IMainView> {
             public void _noNext(Person person) {
                 LogUtil.i(person.toString());
                 getView().setProfile(person);
-
             }
 
             @Override
