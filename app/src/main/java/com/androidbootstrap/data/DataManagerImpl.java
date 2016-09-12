@@ -9,6 +9,8 @@ import com.androidbootstrap.data.base.DataManager;
 import com.androidbootstrap.data.bean.Person;
 import com.androidbootstrap.data.retrofit.RetrofitService;
 import com.androidbootstrap.rx.ApiResponse;
+import com.androidbootstrap.rx.RxResultHelper;
+import com.androidbootstrap.rx.RxSchedulersHelper;
 import com.androidbootstrap.util.LogUtil;
 import com.androidbootstrap.util.SpHelper;
 import com.squareup.sqlbrite.BriteDatabase;
@@ -18,7 +20,6 @@ import java.util.List;
 
 import rx.Observable;
 import rx.Scheduler;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -59,10 +60,10 @@ public class DataManagerImpl implements DataManager {
      * step1 从网络获取数据转换为Person类
      * step2 获取数据后同时新建个子线程保存数据到数据库
      *
-     * @return 发送获取的数据
+     * @return 发送获取的数据的发布者
      */
     @Override
-    public Observable<ApiResponse<Person>> getProfile() {
+    public Observable<Person> getProfile() {
         return retrofitService.getProfile()
                 .doOnNext(new Action1<ApiResponse<Person>>() {
                     @Override
@@ -81,8 +82,8 @@ public class DataManagerImpl implements DataManager {
                         });
                     }
                 })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .compose(RxSchedulersHelper.<ApiResponse<Person>>applyIoSchedulers())
+                .compose(RxResultHelper.<Person>handleResult());
     }
 
     /**

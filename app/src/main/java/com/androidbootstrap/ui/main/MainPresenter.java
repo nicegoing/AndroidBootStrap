@@ -3,13 +3,12 @@ package com.androidbootstrap.ui.main;
 import android.util.Log;
 
 import com.androidbootstrap.data.bean.Person;
-import com.androidbootstrap.rx.ApiResponse;
+import com.androidbootstrap.rx.RxSubscriber;
 import com.androidbootstrap.ui.base.BasePresenter;
 import com.androidbootstrap.util.LogUtil;
 
 import javax.inject.Inject;
 
-import rx.Subscriber;
 import rx.Subscription;
 
 /**
@@ -32,25 +31,19 @@ public class MainPresenter extends BasePresenter<IMainView> {
     }
 
     public void getProfile() {
-        Subscription subscription = dataManager.getProfile().subscribe(new Subscriber<ApiResponse<Person>>() {
+        Subscription s = dataManager.getProfile().subscribe(new RxSubscriber<Person>() {
             @Override
-            public void onCompleted() {
+            public void _noNext(Person person) {
+                LogUtil.i(person.toString());
+                getView().setProfile(person);
 
             }
 
             @Override
-            public void onError(Throwable e) {
-                Log.i("error", e.getMessage());
-
-            }
-
-            @Override
-            public void onNext(ApiResponse<Person> apiResponse) {
-                LogUtil.i(apiResponse.result().toString());
-                LogUtil.i(apiResponse.msg());
-                getView().setProfile(apiResponse.result());
+            public void _onError(String msg) {
+                Log.i("error", msg);
             }
         });
-        addSubscribe(subscription);
+        addSubscribe(s);
     }
 }
