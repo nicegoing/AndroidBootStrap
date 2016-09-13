@@ -47,7 +47,7 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
     public void loadImage(ImageView imageView, String imageUrl, ImageLoaderConfig config, LoaderListener listener) {
         Context context = imageView.getContext();
         if (null == imageUrl) {
-            LogUtil.i("imageUrl is null");
+            LogUtil.d("imageUrl is null");
         }
         if (null == config) {
             config = defaultConfig;
@@ -123,7 +123,7 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
             @Override
             public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, boolean isFromMemoryCache, boolean isFirstResource) {
                 listener.onSuccess(resource);
-                LogUtil.i("setListener>>>>onException>>>>>");
+                LogUtil.d("setListener>>>>onException>>>>>");
                 return false;
             }
         });

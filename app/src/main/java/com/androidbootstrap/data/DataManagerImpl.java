@@ -74,7 +74,7 @@ public class DataManagerImpl implements DataManager {
                             public void call() {
                                 if (person != null) {
                                     writeProfile(person);
-                                    LogUtil.i("插入数据库");
+                                    LogUtil.d("插入数据库");
                                     readProfile();
                                 }
                                 worker.unsubscribe();

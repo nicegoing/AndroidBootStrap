@@ -35,6 +35,7 @@ ext {
                     "stetho-okhttp3"      : "com.facebook.stetho:stetho-okhttp3:1.4.0",
                     "mockito"             : "org.mockito:mockito-core:1.+",
                     "robolectric"         : "org.robolectric:robolectric:3.1.2",
-                    "DaggerMock"          : "com.github.fabioCollini:DaggerMock:0.6.2"
+                    "DaggerMock"          : "com.github.fabioCollini:DaggerMock:0.6.2",
+                    "logger"              : "com.orhanobut:logger:1.15"
     ]
 }

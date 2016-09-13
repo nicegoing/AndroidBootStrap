@@ -91,7 +91,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LogUtil.i(NetUtil.isNetworkConnected()?"true":"false");
+                LogUtil.d(NetUtil.isNetworkConnected()?"true":"false");
             }
         });
 

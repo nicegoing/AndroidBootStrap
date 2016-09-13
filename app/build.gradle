@@ -50,4 +50,5 @@ dependencies {
     compile rootProject.ext.dependencies["sqlbrite"]
     compile rootProject.ext.dependencies["stetho"]
     compile rootProject.ext.dependencies["stetho-okhttp3"]
+    compile rootProject.ext.dependencies["logger"]
 }

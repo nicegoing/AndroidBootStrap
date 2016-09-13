@@ -1,7 +1,5 @@
 package com.androidbootstrap.ui.main;
 
-import android.util.Log;
-
 import com.androidbootstrap.bean.Person;
 import com.androidbootstrap.data.base.DataManager;
 import com.androidbootstrap.rx.RxSubscriber;
@@ -38,13 +36,13 @@ public class MainPresenter extends BasePresenter<IMainView> {
         Subscription s = dataManager.getProfile().subscribe(new RxSubscriber<Person>() {
             @Override
             public void _noNext(Person person) {
-                LogUtil.i(person.toString());
+                LogUtil.d(person.toString());
                 getView().setProfile(person);
             }
 
             @Override
             public void _onError(String msg) {
-                Log.i("error", msg);
+                LogUtil.d(msg);
             }
         });
         addSubscribe(s);

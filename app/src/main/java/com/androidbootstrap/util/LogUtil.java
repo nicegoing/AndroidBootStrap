@@ -1,6 +1,6 @@
 package com.androidbootstrap.util;
 
-import android.util.Log;
+import com.orhanobut.logger.Logger;
 
 /**
  * @author puhanhui
@@ -9,7 +9,7 @@ import android.util.Log;
  * @since 1.0
  */
 public class LogUtil {
-    public static void i(String msg) {
-        Log.i("logUtil", msg);
+    public static void d(Object msg) {
+        Logger.d(msg);
     }
 }
