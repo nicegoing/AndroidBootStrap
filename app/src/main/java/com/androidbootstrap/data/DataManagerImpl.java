@@ -68,6 +68,7 @@ public class DataManagerImpl implements DataManager {
                 .doOnNext(new Action1<Person>() {
                     @Override
                     public void call(final Person person) {
+                        LogUtil.d("新开线程进行数据库处理");
                         final Scheduler.Worker worker = Schedulers.io().createWorker();
                         worker.schedule(new Action0() {
                             @Override

@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.androidbootstrap.inject.component.ActivityComponent;
 import com.androidbootstrap.inject.component.AppComponent;
 import com.androidbootstrap.inject.component.DaggerActivityComponent;
-import com.library.ui.IView;
+import com.library.ui.base.IView;
 
 import javax.inject.Inject;
 

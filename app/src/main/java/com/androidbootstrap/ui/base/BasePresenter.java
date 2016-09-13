@@ -1,6 +1,6 @@
 package com.androidbootstrap.ui.base;
 
-import com.library.ui.IView;
+import com.library.ui.base.IView;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;

@@ -2,6 +2,7 @@ package com.androidbootstrap.rx;
 
 import com.androidbootstrap.rx.error.NetworkConnectionException;
 import com.androidbootstrap.rx.error.ServerException;
+import com.androidbootstrap.util.LogUtil;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -26,6 +27,7 @@ public class RxResultHelper {
                                 } else if (apiResponse.isSuccess()) {
                                     return createData(apiResponse.result());
                                 } else {
+                                    LogUtil.d("code:"+apiResponse.code());
                                     return Observable.error(new ServerException(apiResponse.code(), apiResponse.msg()));
                                 }
                             }

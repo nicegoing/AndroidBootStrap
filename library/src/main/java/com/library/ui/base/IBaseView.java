@@ -1,4 +1,4 @@
-package com.library.ui;
+package com.library.ui.base;
 
 /**
  * View接口的基类
@@ -8,7 +8,7 @@ package com.library.ui;
  * @date 2016/8/6
  * @since 1.0
  */
-public interface IBaseView extends IView{
+public interface IBaseView extends IView {
     /**
      * show dialog
      *

@@ -1,4 +1,4 @@
-package com.library.ui;
+package com.library.ui.view;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;

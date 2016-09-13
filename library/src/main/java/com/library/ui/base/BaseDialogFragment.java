@@ -1,4 +1,4 @@
-package com.library.ui.dialog;
+package com.library.ui.base;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
