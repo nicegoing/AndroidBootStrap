@@ -20,6 +20,7 @@ public class RxResultHelper {
                         new Func1<ApiResponse<T>, Observable<T>>() {
                             @Override
                             public Observable<T> call(ApiResponse<T> apiResponse) {
+
                                 if (apiResponse == null) {
                                     return Observable.error(new NetworkConnectionException());
                                 } else if (apiResponse.isSuccess()) {

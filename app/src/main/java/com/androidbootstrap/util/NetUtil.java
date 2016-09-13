@@ -51,8 +51,14 @@ public static Context context;
      */
     public static boolean isNetworkConnected() {
         ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (manager==null){
+            return false;
+        }
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnected();
+        if (networkInfo==null){
+            return false;
+        }
+        return  networkInfo.isConnected();
     }
 
 

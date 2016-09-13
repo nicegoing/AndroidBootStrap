@@ -4,11 +4,10 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.util.Log;
 
+import com.androidbootstrap.bean.Person;
 import com.androidbootstrap.constant.Constants;
 import com.androidbootstrap.data.base.DataManager;
-import com.androidbootstrap.bean.Person;
 import com.androidbootstrap.data.retrofit.RetrofitService;
-import com.androidbootstrap.rx.ApiResponse;
 import com.androidbootstrap.rx.RxResultHelper;
 import com.androidbootstrap.rx.RxSchedulersHelper;
 import com.androidbootstrap.util.LogUtil;
@@ -65,15 +64,16 @@ public class DataManagerImpl implements DataManager {
     @Override
     public Observable<Person> getProfile() {
         return retrofitService.getProfile()
-                .doOnNext(new Action1<ApiResponse<Person>>() {
+                .compose(RxResultHelper.<Person>handleResult())
+                .doOnNext(new Action1<Person>() {
                     @Override
-                    public void call(final ApiResponse<Person> apiResponse) {
+                    public void call(final Person person) {
                         final Scheduler.Worker worker = Schedulers.io().createWorker();
                         worker.schedule(new Action0() {
                             @Override
                             public void call() {
-                                if (apiResponse.result() != null) {
-                                    writeProfile(apiResponse.result());
+                                if (person != null) {
+                                    writeProfile(person);
                                     LogUtil.i("插入数据库");
                                     readProfile();
                                 }
@@ -82,8 +82,7 @@ public class DataManagerImpl implements DataManager {
                         });
                     }
                 })
-                .compose(RxSchedulersHelper.<ApiResponse<Person>>applyIoSchedulers())
-                .compose(RxResultHelper.<Person>handleResult());
+                .compose(RxSchedulersHelper.<Person>applyIoSchedulers());
     }
 
     /**

@@ -6,10 +6,9 @@ import com.androidbootstrap.constant.Constants;
 import com.androidbootstrap.data.DataManagerImpl;
 import com.androidbootstrap.data.base.AutoValueGson_MyAdapterFactory;
 import com.androidbootstrap.data.base.DataManager;
-import com.androidbootstrap.data.retrofit.RetrofitService;
 import com.androidbootstrap.data.db.DBOpenHelper;
+import com.androidbootstrap.data.retrofit.RetrofitService;
 import com.androidbootstrap.util.SpHelper;
-import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.sqlbrite.BriteDatabase;
@@ -93,8 +92,8 @@ public class AppModule {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(Constants.HTTP_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
                 .connectTimeout(Constants.HTTP_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
-                .addInterceptor(loggingInterceptor)
-                .addNetworkInterceptor(new StethoInterceptor())
+//                .addInterceptor(loggingInterceptor)
+//                .addNetworkInterceptor(new StethoInterceptor())
                 .build();
 
         return okHttpClient;

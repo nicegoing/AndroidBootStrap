@@ -18,6 +18,8 @@ import com.androidbootstrap.R;
 import com.androidbootstrap.bean.Person;
 import com.androidbootstrap.inject.component.ActivityComponent;
 import com.androidbootstrap.ui.base.BaseActivity;
+import com.androidbootstrap.util.LogUtil;
+import com.androidbootstrap.util.NetUtil;
 import com.androidbootstrap.util.ToastUtil;
 
 import butterknife.BindView;
@@ -89,6 +91,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                LogUtil.i(NetUtil.isNetworkConnected()?"true":"false");
             }
         });
 
