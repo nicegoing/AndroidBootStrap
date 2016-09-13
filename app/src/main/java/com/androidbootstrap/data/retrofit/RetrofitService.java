@@ -1,7 +1,7 @@
 package com.androidbootstrap.data.retrofit;
 
 import com.androidbootstrap.constant.Constants;
-import com.androidbootstrap.data.bean.Person;
+import com.androidbootstrap.bean.Person;
 import com.androidbootstrap.rx.ApiResponse;
 
 import retrofit2.http.GET;

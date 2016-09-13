@@ -6,7 +6,7 @@ import android.util.Log;
 
 import com.androidbootstrap.constant.Constants;
 import com.androidbootstrap.data.base.DataManager;
-import com.androidbootstrap.data.bean.Person;
+import com.androidbootstrap.bean.Person;
 import com.androidbootstrap.data.retrofit.RetrofitService;
 import com.androidbootstrap.rx.ApiResponse;
 import com.androidbootstrap.rx.RxResultHelper;

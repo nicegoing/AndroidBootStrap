@@ -23,6 +23,17 @@ public abstract class RxSubscriber<T> extends Subscriber<T> {
         _onError(ErrorHanding.handleError(new DefaultErrorBundle((Exception) e)));
     }
 
+    /**
+     * 正确返回数据在这里处理
+     *
+     * @param t 返回的数据
+     */
     public abstract void _noNext(T t);
+
+    /**
+     * 错误统一在该方法中处理
+     *
+     * @param msg 错误类型
+     */
     public abstract void _onError(String msg);
 }

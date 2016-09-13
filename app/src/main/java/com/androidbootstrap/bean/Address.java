@@ -1,4 +1,4 @@
-package com.androidbootstrap.data.bean;
+package com.androidbootstrap.bean;
 
 import com.google.auto.value.AutoValue;
 import com.google.gson.Gson;

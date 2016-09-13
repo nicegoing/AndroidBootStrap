@@ -1,6 +1,6 @@
 package com.androidbootstrap.ui.main;
 
-import com.androidbootstrap.data.bean.Person;
+import com.androidbootstrap.bean.Person;
 import com.library.ui.IBaseView;
 
 /**

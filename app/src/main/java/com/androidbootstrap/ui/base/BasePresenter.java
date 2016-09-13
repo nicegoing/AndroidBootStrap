@@ -1,7 +1,5 @@
 package com.androidbootstrap.ui.base;
 
-import com.androidbootstrap.data.base.DataManager;
-import com.androidbootstrap.inject.component.AppComponent;
 import com.library.ui.IView;
 
 import rx.Subscription;
@@ -22,12 +20,6 @@ public class BasePresenter<T extends IView> implements IPresenter<T> {
     @Override
     public void attachView(T view) {
         this.view = view;
-    }
-
-    protected DataManager dataManager;
-
-    public BasePresenter() {
-        dataManager = AppComponent.Instance.get().getDataManager();
     }
 
 

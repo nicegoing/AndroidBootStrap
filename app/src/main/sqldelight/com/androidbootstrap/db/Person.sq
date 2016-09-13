@@ -7,5 +7,3 @@ CREATE TABLE Person(
 
 select_all:
 select * from Person;
-insert_all:
-insert into Person (name,gender,age) values (1,2,3);

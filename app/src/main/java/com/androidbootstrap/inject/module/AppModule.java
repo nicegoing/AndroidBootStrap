@@ -7,7 +7,7 @@ import com.androidbootstrap.data.DataManagerImpl;
 import com.androidbootstrap.data.base.AutoValueGson_MyAdapterFactory;
 import com.androidbootstrap.data.base.DataManager;
 import com.androidbootstrap.data.retrofit.RetrofitService;
-import com.androidbootstrap.db.DBOpenHelper;
+import com.androidbootstrap.data.db.DBOpenHelper;
 import com.androidbootstrap.util.SpHelper;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;

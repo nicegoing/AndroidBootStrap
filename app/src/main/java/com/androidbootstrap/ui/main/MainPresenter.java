@@ -2,7 +2,8 @@ package com.androidbootstrap.ui.main;
 
 import android.util.Log;
 
-import com.androidbootstrap.data.bean.Person;
+import com.androidbootstrap.bean.Person;
+import com.androidbootstrap.data.base.DataManager;
 import com.androidbootstrap.rx.RxSubscriber;
 import com.androidbootstrap.ui.base.BasePresenter;
 import com.androidbootstrap.util.LogUtil;
@@ -18,8 +19,11 @@ import rx.Subscription;
  * @since 1.0
  */
 public class MainPresenter extends BasePresenter<IMainView> {
+    protected DataManager dataManager;
+
     @Inject
-    public MainPresenter() {
+    public MainPresenter(DataManager dataManager) {
+        this.dataManager = dataManager;
     }
 
     void writeEmail(String email) {

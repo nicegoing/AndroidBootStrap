@@ -15,10 +15,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.androidbootstrap.R;
-import com.androidbootstrap.data.bean.Person;
+import com.androidbootstrap.bean.Person;
 import com.androidbootstrap.inject.component.ActivityComponent;
 import com.androidbootstrap.ui.base.BaseActivity;
-import com.androidbootstrap.ui.fragment.InboxFragment;
 import com.androidbootstrap.util.ToastUtil;
 
 import butterknife.BindView;
@@ -134,7 +133,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         int id = item.getItemId();
 
         if (id == R.id.nav_inbox) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new InboxFragment()).commit();
+//            getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new InboxFragment()).commit();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

@@ -1,6 +1,6 @@
 package com.androidbootstrap.data.base;
 
-import com.androidbootstrap.data.bean.Person;
+import com.androidbootstrap.bean.Person;
 import com.androidbootstrap.util.SpHelper;
 
 import rx.Observable;
