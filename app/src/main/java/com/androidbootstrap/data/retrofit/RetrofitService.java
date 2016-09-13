@@ -16,5 +16,5 @@ import rx.Observable;
 public interface RetrofitService {
 
     @GET(Constants.PERSON_URL)
-    Observable<ApiResponse<Person>> getProfile();
+    Observable<ApiResponse<Person>> loadProfile();
 }

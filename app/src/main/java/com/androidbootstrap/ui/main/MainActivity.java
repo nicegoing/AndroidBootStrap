@@ -84,7 +84,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.getProfile();
+                presenter.loadProfile();
             }
         });
 

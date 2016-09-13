@@ -32,8 +32,8 @@ public class MainPresenter extends BasePresenter<IMainView> {
         return dataManager.readEmail();
     }
 
-    public void getProfile() {
-        Subscription s = dataManager.getProfile().subscribe(new RxSubscriber<Person>() {
+    public void loadProfile() {
+        Subscription s = dataManager.loadProfile().subscribe(new RxSubscriber<Person>() {
             @Override
             public void _noNext(Person person) {
                 LogUtil.d(person.toString());

@@ -22,5 +22,5 @@ public interface DataManager {
 
     String readEmail();
 
-    Observable<Person> getProfile();
+    Observable<Person> loadProfile();
 }

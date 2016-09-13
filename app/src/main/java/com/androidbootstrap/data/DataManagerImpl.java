@@ -62,8 +62,8 @@ public class DataManagerImpl implements DataManager {
      * @return 发送获取的数据的发布者
      */
     @Override
-    public Observable<Person> getProfile() {
-        return retrofitService.getProfile()
+    public Observable<Person> loadProfile() {
+        return retrofitService.loadProfile()
                 .compose(RxResultHelper.<Person>handleResult())
                 .doOnNext(new Action1<Person>() {
                     @Override
