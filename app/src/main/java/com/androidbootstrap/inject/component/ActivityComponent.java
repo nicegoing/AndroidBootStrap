@@ -1,6 +1,7 @@
 package com.androidbootstrap.inject.component;
 
 import com.androidbootstrap.inject.scope.PerActivity;
+import com.androidbootstrap.ui.list.TestListActivity;
 import com.androidbootstrap.ui.main.MainActivity;
 
 import dagger.Component;
@@ -15,4 +16,9 @@ import dagger.Component;
 @Component(dependencies = AppComponent.class)
 public interface ActivityComponent {
     void inject(MainActivity mainActivity);
+
+    void inject(TestListActivity testListActivity
+
+
+    );
 }

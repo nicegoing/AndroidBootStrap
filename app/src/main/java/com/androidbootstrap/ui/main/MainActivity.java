@@ -1,5 +1,6 @@
 package com.androidbootstrap.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -18,9 +19,10 @@ import com.androidbootstrap.R;
 import com.androidbootstrap.bean.Person;
 import com.androidbootstrap.inject.component.ActivityComponent;
 import com.androidbootstrap.ui.base.BaseActivity;
-import com.androidbootstrap.util.LogUtil;
-import com.androidbootstrap.util.NetUtil;
+import com.androidbootstrap.ui.list.TestListActivity;
 import com.androidbootstrap.util.ToastUtil;
+import com.library.constant.Constant;
+import com.library.ui.base.LoadingDialogFragment;
 import com.library.ui.view.MultiStateView;
 
 import butterknife.BindView;
@@ -29,9 +31,12 @@ public class MainActivity extends BaseActivity<MainPresenter>
         implements IMainView, NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.btn_show)
-    Button               btnShow;
+    Button btnShow;
     @BindView(R.id.btn_cancel)
-    Button               btnCancel;
+    Button btnCancel;
+    @BindView(R.id.btn_progress)
+    Button btnProgress;
+
     @BindView(R.id.tv_info)
     TextView             tvInfo;
     @BindView(R.id.fab)
@@ -46,6 +51,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
     MultiStateView       multiStateView;
     private Button btnRetry;
 
+    LoadingDialogFragment loadingDialogFragment;
 
     @Override
     protected int getLayoutId() {
@@ -95,13 +101,21 @@ public class MainActivity extends BaseActivity<MainPresenter>
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LogUtil.d(NetUtil.isNetworkConnected() ? "true" : "false");
+                Intent intent = new Intent(MainActivity.this, TestListActivity.class);
+                MainActivity.this.startActivity(intent);
             }
         });
         btnRetry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 presenter.loadProfile();
+            }
+        });
+
+        btnProgress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.loadProfileWithProgress();
             }
         });
     }
@@ -186,11 +200,25 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     @Override
     public void displayDialog(int dialogType) {
+        switch (dialogType) {
+            case Constant.DIALOG_TYPE.LOADING_DIALOG:
+                loadingDialogFragment = new LoadingDialogFragment();
+                loadingDialogFragment.setCanceledOnTouchOutside(false);
+                loadingDialogFragment.setCancelable(false);
+                loadingDialogFragment.show(getSupportFragmentManager(), "loading_dialog");
+                break;
 
+        }
     }
 
     @Override
     public void hideDialog(int... dialogType) {
-
+        for (int i : dialogType) {
+            switch (i) {
+                case Constant.DIALOG_TYPE.LOADING_DIALOG:
+                    loadingDialogFragment.dismissAllowingStateLoss();
+                    break;
+            }
+        }
     }
 }

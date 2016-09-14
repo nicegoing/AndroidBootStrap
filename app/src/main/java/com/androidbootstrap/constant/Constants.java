@@ -15,4 +15,10 @@ public class Constants {
     public static final class SP_KEY {
         public static final String EMAIL = "email";
     }
+
+    public static final class LOAD_TYPE {
+        public static final int FIRST_IN  = 1;
+        public static final int REFRESH   = 2;
+        public static final int LOAD_MORE = 3;
+    }
 }

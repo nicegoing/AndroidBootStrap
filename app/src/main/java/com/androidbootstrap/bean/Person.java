@@ -11,10 +11,14 @@ import com.squareup.sqldelight.RowMapper;
 
 @AutoValue
 public abstract class Person implements PersonModel {
+
+    @Nullable
     public abstract String name();
 
+    @Nullable
     public abstract String gender();
 
+    @Nullable
     public abstract String age();
 
     @Nullable
@@ -28,12 +32,13 @@ public abstract class Person implements PersonModel {
     /**
      * 获取Person的实例
      */
-    public static final Factory<Person> FACTORY=new Factory<>(new Creator<Person>() {
+    public static final Factory<Person> FACTORY = new Factory<>(new Creator<Person>() {
         @Override
         public Person create(long _id, @NonNull String name, @NonNull String gender, @NonNull String age) {
-            return new AutoValue_Person(_id,name,gender,age,null);
+            return new AutoValue_Person(_id, name, gender, age, null);
         }
     });
 
     public static final RowMapper<Person> MAPPER = FACTORY.select_allMapper();
+
 }

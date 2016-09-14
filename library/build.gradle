@@ -36,4 +36,5 @@ dependencies {
     compile rootProject.ext.dependencies["glide"]
     compile rootProject.ext.dependencies["eventbus"]
     compile rootProject.ext.dependencies["annotations"]
+    compile rootProject.ext.dependencies["circularprogressview"]
 }
