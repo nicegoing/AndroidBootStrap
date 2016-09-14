@@ -2,6 +2,8 @@ package com.library.util;
 
 import android.text.TextUtils;
 
+import java.util.Collection;
+
 /**
  * @author puhanhui
  * @version 1.0
@@ -19,4 +21,6 @@ public class TextUtil {
     public static boolean isEmpty(CharSequence str) {
         return TextUtils.isEmpty(str) || "null".equals(str.toString().trim());
     }
+
 }
+

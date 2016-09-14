@@ -1,6 +1,7 @@
 package com.library.ui.view;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,21 +19,27 @@ import java.lang.reflect.Field;
  * 自定义RecyclerView，该类除了系统基本的功能以外，还加入了下拉加载更多等功能
  */
 public final class SmartRecyclerView extends RecyclerView {
+    private static final String  TAG             = "SmartRecyclerView";
     /**
      * item 类型
      */
-    public final static int     TYPE_HEADER     = Integer.MAX_VALUE + 10;//头部--支持头部增加一个headerView
-    public final static int     TYPE_FOOTER     = Integer.MAX_VALUE + 11;//底部--往往是loading_more
-    private             boolean mIsFooterEnable = false;//是否允许加载更多
-    private boolean                       mIsHeaderEnable;
+    public final static  int     TYPE_HEADER     = Integer.MAX_VALUE + 10;//头部--支持头部增加一个headerView
+    public final static  int     TYPE_FOOTER     = Integer.MAX_VALUE + 11;//底部--往往是loading_more
+    private              boolean mIsFooterEnable = false;//是否允许加载更多
+    private boolean         mIsHeaderEnable;
     /**
      * 自定义实现了头部和底部加载更多的adapter
      */
-    private AutoLoadAdapter               mAutoLoadAdapter;
+    private AutoLoadAdapter mAutoLoadAdapter;
     /**
      * 标记是否正在加载更多，防止再次调用加载更多接口
      */
-    private boolean                       mIsLoadingMore;
+    private boolean         mIsLoadingMore;
+
+    /**
+     * 是否第一次加载显示Loading
+     */
+    private boolean                       isFirstLoadGone;
     /**
      * 标记加载更多的position
      */
@@ -44,8 +51,13 @@ public final class SmartRecyclerView extends RecyclerView {
 
     /**
      * 是否预加载
+     *
+     * @author dingpeihua
+     * @date 2016/4/25 8:55
+     * @version 1.0
      */
     private boolean isPreLoading;
+    //    private boolean loadMoreFinished = true;
     /**
      * 是否能加载更多,仅跟踪RecycleView滚动方向
      */
@@ -67,6 +79,10 @@ public final class SmartRecyclerView extends RecyclerView {
 
     public void setPreLoading(boolean isPreLoading) {
         this.isPreLoading = isPreLoading;
+    }
+
+    public void setFirstLoadGone(boolean firstLoadGone) {
+        isFirstLoadGone = firstLoadGone;
     }
 
     /**
@@ -183,9 +199,15 @@ public final class SmartRecyclerView extends RecyclerView {
         return mAutoLoadAdapter != null ? mAutoLoadAdapter.getInternalAdapter() : null;
     }
 
+    @Override
+    public void setLayoutManager(LayoutManager layout) {
+        //        if (layout instanceof StaggeredGridLayoutManager) {
+        //            ((StaggeredGridLayoutManager) layout).setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+        //        }
+        super.setLayoutManager(layout);
+    }
+
     /**
-     * 添加头部view
-     *
      * @param resId
      */
     public void addFooterView(int resId) {
@@ -203,18 +225,29 @@ public final class SmartRecyclerView extends RecyclerView {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+                //                //防止第一行到顶部有空白区域
+                //                if (getLayoutManager() instanceof StaggeredGridLayoutManager) {
+                //                    ((StaggeredGridLayoutManager) getLayoutManager()).invalidateSpanAssignments();
+                //
+                //                }
             }
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+                    if (!recyclerView.canScrollVertically(-1)) {
+                        mAutoLoadAdapter.notifyDataSetChanged();
+                        return;
+                    }
+                }
                 if (null != mListener && mIsFooterEnable && !mIsLoadingMore && dy > 0) {
-                    long startTime = System.currentTimeMillis();
                     int lastVisiblePosition = getLastVisiblePosition();
-                    long time = System.currentTimeMillis() - startTime;
-                    if (lastVisiblePosition + 2 == mAutoLoadAdapter.getItemCount() || (isPreLoading && lastVisiblePosition == mAutoLoadAdapter.getItemCount() - 10)) {
+                    if (lastVisiblePosition + 2 == mAutoLoadAdapter.getItemCount()) {
+                        //提前显示Loading，只显示，不加载数据
                         mAutoLoadAdapter.showFooterView();
-                        //                            scrollToPosition(mAutoLoadAdapter.getItemCount() - 1);
+                    }
+                    if (lastVisiblePosition + 1 == mAutoLoadAdapter.getItemCount() || isPreLoading && lastVisiblePosition == mAutoLoadAdapter.getItemCount() - 10) {
                         setLoadingMore(true);
                         mLoadMorePosition = lastVisiblePosition;
                         mListener.onLoadMore();
@@ -372,7 +405,11 @@ public final class SmartRecyclerView extends RecyclerView {
                     params.setFullSpan(true);
                     itemView.setLayoutParams(layoutParams);
                 }
-                llLoadMore.setVisibility(GONE);
+                if (isFirstLoadGone) {
+                    llLoadMore.setVisibility(GONE);
+                } else {
+                    llLoadMore.setVisibility(VISIBLE);
+                }
             }
         }
 
@@ -488,6 +525,7 @@ public final class SmartRecyclerView extends RecyclerView {
         }
         mIsLoadingMore = false;
     }
+
 
     public boolean isIsFooterEnable() {
         return mIsFooterEnable;

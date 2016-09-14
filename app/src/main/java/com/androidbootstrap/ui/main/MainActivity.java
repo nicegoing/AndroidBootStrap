@@ -21,6 +21,7 @@ import com.androidbootstrap.ui.base.BaseActivity;
 import com.androidbootstrap.util.LogUtil;
 import com.androidbootstrap.util.NetUtil;
 import com.androidbootstrap.util.ToastUtil;
+import com.library.ui.view.MultiStateView;
 
 import butterknife.BindView;
 
@@ -41,6 +42,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
     DrawerLayout         drawer;
     @BindView(R.id.nav_view)
     NavigationView       navigationView;
+    @BindView(R.id.multiStateView)
+    MultiStateView       multiStateView;
+    private Button btnRetry;
 
 
     @Override
@@ -63,7 +67,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
+        btnRetry = (Button) multiStateView.findViewById(R.id.retry);
 
     }
 
@@ -91,10 +95,15 @@ public class MainActivity extends BaseActivity<MainPresenter>
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LogUtil.d(NetUtil.isNetworkConnected()?"true":"false");
+                LogUtil.d(NetUtil.isNetworkConnected() ? "true" : "false");
             }
         });
-
+        btnRetry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.loadProfile();
+            }
+        });
     }
 
     @Override
@@ -136,7 +145,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         int id = item.getItemId();
 
         if (id == R.id.nav_inbox) {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new InboxFragment()).commit();
+            //            getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new InboxFragment()).commit();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -167,6 +176,12 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @Override
     public void setProfile(Person person) {
         tvInfo.setText(person.toString());
+    }
+
+
+    @Override
+    public void setViewState(int state) {
+        multiStateView.setViewState(state);
     }
 
     @Override

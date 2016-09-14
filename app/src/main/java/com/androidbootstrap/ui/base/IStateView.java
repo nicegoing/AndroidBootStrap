@@ -1,14 +1,21 @@
-package com.library.ui.base;
+package com.androidbootstrap.ui.base;
+
+import com.library.ui.base.IView;
 
 /**
- * View接口的基类
- *
  * @author puhanhui
  * @version 1.0
- * @date 2016/8/6
+ * @date 2016/9/13
  * @since 1.0
  */
-public interface IBaseView extends IView {
+public interface IStateView extends IView {
+    /**
+     * 设置view显示的状态
+     *
+     * @param state 状态为empty，loading,content,error等
+     */
+    void setViewState(int state);
+
     /**
      * show dialog
      *
@@ -22,5 +29,4 @@ public interface IBaseView extends IView {
      * @param dialogType 类型定义在{@link com.library.constant.Constant.DIALOG_TYPE DIALOG_TYPE}
      */
     void hideDialog(int... dialogType);
-
 }

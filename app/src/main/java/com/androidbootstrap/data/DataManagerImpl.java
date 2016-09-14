@@ -2,12 +2,14 @@ package com.androidbootstrap.data;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.os.SystemClock;
 import android.util.Log;
 
 import com.androidbootstrap.bean.Person;
 import com.androidbootstrap.constant.Constants;
 import com.androidbootstrap.data.base.DataManager;
 import com.androidbootstrap.data.retrofit.RetrofitService;
+import com.androidbootstrap.rx.ApiResponse;
 import com.androidbootstrap.rx.RxResultHelper;
 import com.androidbootstrap.rx.RxSchedulersHelper;
 import com.androidbootstrap.util.LogUtil;
@@ -64,6 +66,12 @@ public class DataManagerImpl implements DataManager {
     @Override
     public Observable<Person> loadProfile() {
         return retrofitService.loadProfile()
+                .doOnNext(new Action1<ApiResponse<Person>>() {
+                    @Override
+                    public void call(ApiResponse<Person> personApiResponse) {
+                        SystemClock.sleep(1000);
+                    }
+                })
                 .compose(RxResultHelper.<Person>handleResult())
                 .doOnNext(new Action1<Person>() {
                     @Override

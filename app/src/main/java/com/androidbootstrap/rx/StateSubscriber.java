@@ -3,45 +3,49 @@ package com.androidbootstrap.rx;
 import com.androidbootstrap.rx.error.DefaultErrorBundle;
 import com.androidbootstrap.rx.error.ErrorHanding;
 import com.androidbootstrap.ui.base.IStateView;
-import com.library.constant.Constant;
+import com.library.ui.view.MultiStateView;
 
 import rx.Subscriber;
 
 /**
- * Activity需要实现IStateView接口，在获取数据前显示加载框，获取数据后进度消失
+ * Activity需要实现IStateView接口，实现自动转换状态
  *
  * @author puhanhui
  * @version 1.0
  * @date 2016/9/13
  * @since 1.0
  */
-public abstract class ProgressSubscriber<T> extends Subscriber<T> {
+public abstract class StateSubscriber<T> extends Subscriber<T> {
 
     private IStateView stateView;
 
-    public ProgressSubscriber(IStateView stateView) {
-        this.stateView = stateView;
+    public StateSubscriber(IStateView stateView) {
+        this.stateView=stateView;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        stateView.displayDialog(Constant.DIALOG_TYPE.LOADING_DIALOG);
+        stateView.setViewState(MultiStateView.VIEW_STATE_LOADING);
     }
 
     @Override
     public void onCompleted() {
-        stateView.hideDialog(Constant.DIALOG_TYPE.LOADING_DIALOG);
     }
 
     @Override
     public void onNext(T t) {
+        if (RxUtil.isEmpty(t)) {
+            stateView.setViewState(MultiStateView.VIEW_STATE_EMPTY);
+        } else {
+            stateView.setViewState(MultiStateView.VIEW_STATE_CONTENT);
+        }
         _noNext(t);
     }
 
     @Override
     public void onError(Throwable e) {
-        stateView.hideDialog(Constant.DIALOG_TYPE.LOADING_DIALOG);
+        stateView.setViewState(MultiStateView.VIEW_STATE_ERROR);
         _onError(ErrorHanding.handleError(new DefaultErrorBundle((Exception) e)));
     }
 

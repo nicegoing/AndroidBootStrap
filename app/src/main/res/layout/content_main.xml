@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/content_main"
+<com.library.ui.view.MultiStateView
+    android:id="@+id/multiStateView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
-    <Button android:id="@+id/btn_show" android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="show"/>
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:msv_emptyView="@layout/empty_view"
+    app:msv_errorView="@layout/error_view"
+    app:msv_loadingView="@layout/loading_view">
 
-    <Button android:id="@+id/btn_cancel" android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="cancel"/>
-    <TextView android:id="@+id/tv_info" android:layout_width="match_parent"
-              android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button android:id="@+id/btn_show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="点击显示加载状态"/>
 
-</LinearLayout>
+        <Button android:id="@+id/btn_cancel" android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cancel"/>
+        <TextView android:id="@+id/tv_info" android:layout_width="match_parent"
+                  android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</com.library.ui.view.MultiStateView>

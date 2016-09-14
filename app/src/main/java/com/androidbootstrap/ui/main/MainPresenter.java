@@ -2,9 +2,10 @@ package com.androidbootstrap.ui.main;
 
 import com.androidbootstrap.bean.Person;
 import com.androidbootstrap.data.base.DataManager;
-import com.androidbootstrap.rx.RxSubscriber;
+import com.androidbootstrap.rx.StateSubscriber;
 import com.androidbootstrap.ui.base.BasePresenter;
 import com.androidbootstrap.util.LogUtil;
+import com.androidbootstrap.util.ToastUtil;
 
 import javax.inject.Inject;
 
@@ -33,7 +34,20 @@ public class MainPresenter extends BasePresenter<IMainView> {
     }
 
     public void loadProfile() {
-        Subscription s = dataManager.loadProfile().subscribe(new RxSubscriber<Person>() {
+        //        Subscription s = dataManager.loadProfile().subscribe(new RxSubscriber<Person>() {
+        //            @Override
+        //            public void _noNext(Person person) {
+        //                LogUtil.d(person.toString());
+        //                getView().setProfile(person);
+        //            }
+        //
+        //            @Override
+        //            public void _onError(String msg) {
+        //                LogUtil.d(msg);
+        //            }
+        //        });
+        LogUtil.d(getView() == null ? "空" : "不为空");
+        Subscription s = dataManager.loadProfile().subscribe(new StateSubscriber<Person>(getView()) {
             @Override
             public void _noNext(Person person) {
                 LogUtil.d(person.toString());
@@ -42,9 +56,10 @@ public class MainPresenter extends BasePresenter<IMainView> {
 
             @Override
             public void _onError(String msg) {
-                LogUtil.d(msg);
+                ToastUtil.show(msg);
             }
         });
+
         addSubscribe(s);
     }
 }
