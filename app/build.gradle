@@ -51,4 +51,6 @@ dependencies {
     compile rootProject.ext.dependencies["stetho"]
     compile rootProject.ext.dependencies["stetho-okhttp3"]
     compile rootProject.ext.dependencies["logger"]
+    apt rootProject.ext.dependencies["multidex"]
+    apt rootProject.ext.dependencies["design"]
 }

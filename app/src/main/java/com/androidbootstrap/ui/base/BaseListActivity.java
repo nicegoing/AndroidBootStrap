@@ -19,6 +19,9 @@ import butterknife.BindView;
 import hugo.weaving.DebugLog;
 
 /**
+ * 该基类封装了基本的刷新，加载功能
+ * 1.子类的View接口需要继承IListView
+ * 2.
  * @author puhanhui
  * @version 1.0
  * @date 2016/9/17
@@ -35,7 +38,7 @@ public abstract class BaseListActivity<P extends IPresenter, A extends BaseListA
     A adapter;
 
     @Override
-    protected int getLayoutId() {
+    protected final int getLayoutId() {
         return R.layout.activity_list;
     }
 

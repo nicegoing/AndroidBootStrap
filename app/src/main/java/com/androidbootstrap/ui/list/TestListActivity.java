@@ -39,7 +39,6 @@ public class TestListActivity extends BaseListActivity<TestListPresenter,TestLis
         return new LinearLayoutManager(this);
     }
 
-    @NonNull
     @Override
     protected RecyclerView.ItemDecoration getItemDecoration() {
         return null;
