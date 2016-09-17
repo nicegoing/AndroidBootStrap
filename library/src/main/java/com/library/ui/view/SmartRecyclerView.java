@@ -2,6 +2,7 @@ package com.library.ui.view;
 
 import android.content.Context;
 import android.os.Build;
+import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -237,7 +238,13 @@ public final class SmartRecyclerView extends RecyclerView {
                 super.onScrolled(recyclerView, dx, dy);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
                     if (!recyclerView.canScrollVertically(-1)) {
-                        mAutoLoadAdapter.notifyDataSetChanged();
+                        new Handler().post(new Runnable() {
+                            @Override
+                            public void run() {
+                                mAutoLoadAdapter.notifyDataSetChanged();
+                                return;
+                            }
+                        });
                         return;
                     }
                 }
