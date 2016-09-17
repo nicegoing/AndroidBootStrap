@@ -2,6 +2,9 @@ package com.androidbootstrap;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
@@ -16,9 +19,13 @@ public class ExampleUnitTest {
     }
 
 
-    @Test(expected = ArithmeticException.class)
+    @Test
     public void sub() throws Exception {
-        int i=4/0;
+        List<String> list = new ArrayList();
+        list.add("1");
+        list.add("1");
+        list.addAll(list);
+        assertEquals(list.size(),4);
     }
 
 }

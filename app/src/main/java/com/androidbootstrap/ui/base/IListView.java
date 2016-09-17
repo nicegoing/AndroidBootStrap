@@ -1,5 +1,7 @@
 package com.androidbootstrap.ui.base;
 
+import java.util.List;
+
 /**
  * @author puhanhui
  * @version 1.0
@@ -7,5 +9,9 @@ package com.androidbootstrap.ui.base;
  * @since 1.0
  */
 public interface IListView extends IStateView {
+    void setRefreshing(boolean refreshing);
 
+    void setLoadMoreFinish(boolean hasMore);
+
+    void onSuccess(List names, int loadType);
 }

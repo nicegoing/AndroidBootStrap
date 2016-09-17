@@ -1,8 +1,12 @@
 package com.androidbootstrap.data.retrofit;
 
-import com.androidbootstrap.constant.Constants;
+import com.androidbootstrap.bean.Name;
 import com.androidbootstrap.bean.Person;
+import com.androidbootstrap.constant.Constants;
 import com.androidbootstrap.rx.ApiResponse;
+import com.androidbootstrap.rx.ListResult;
+
+import java.util.List;
 
 import retrofit2.http.GET;
 import rx.Observable;
@@ -17,4 +21,8 @@ public interface RetrofitService {
 
     @GET(Constants.PERSON_URL)
     Observable<ApiResponse<Person>> loadProfile();
+
+    @GET(Constants.NAME_URL)
+    Observable<ApiResponse<ListResult<List<Name>>>> loadName();
+
 }

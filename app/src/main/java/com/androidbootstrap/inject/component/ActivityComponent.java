@@ -16,9 +16,5 @@ import dagger.Component;
 @Component(dependencies = AppComponent.class)
 public interface ActivityComponent {
     void inject(MainActivity mainActivity);
-
-    void inject(TestListActivity testListActivity
-
-
-    );
+    void inject(TestListActivity testBaseListActivity);
 }

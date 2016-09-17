@@ -5,11 +5,13 @@ import android.database.Cursor;
 import android.os.SystemClock;
 import android.util.Log;
 
+import com.androidbootstrap.bean.Name;
 import com.androidbootstrap.bean.Person;
 import com.androidbootstrap.constant.Constants;
 import com.androidbootstrap.data.base.DataManager;
 import com.androidbootstrap.data.retrofit.RetrofitService;
 import com.androidbootstrap.rx.ApiResponse;
+import com.androidbootstrap.rx.ListResult;
 import com.androidbootstrap.rx.RxResultHelper;
 import com.androidbootstrap.rx.RxSchedulersHelper;
 import com.androidbootstrap.util.LogUtil;
@@ -49,12 +51,12 @@ public class DataManagerImpl implements DataManager {
 
     @Override
     public void writeEmail(String email) {
-        getSharePreferences().save(Constants.SP_KEY.EMAIL, email);
+        getSharePreferences().save(Constants.SpKey.EMAIL, email);
     }
 
     @Override
     public String readEmail() {
-        return getSharePreferences().getString(Constants.SP_KEY.EMAIL);
+        return getSharePreferences().getString(Constants.SpKey.EMAIL);
     }
 
     /**
@@ -92,6 +94,13 @@ public class DataManagerImpl implements DataManager {
                     }
                 })
                 .compose(RxSchedulersHelper.<Person>applyIoSchedulers());
+    }
+
+    @Override
+    public Observable<ListResult<List<Name>>> loadName() {
+        return retrofitService.loadName()
+                .compose(RxResultHelper.<ListResult<List<Name>>>handleResult())
+                .compose(RxSchedulersHelper.<ListResult<List<Name>>>applyIoSchedulers());
     }
 
     /**

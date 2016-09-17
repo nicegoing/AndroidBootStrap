@@ -1,37 +1,47 @@
 package com.androidbootstrap.ui.list;
 
+import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
 import com.androidbootstrap.inject.component.ActivityComponent;
-import com.androidbootstrap.ui.base.BaseActivity;
+import com.androidbootstrap.ui.base.BaseListActivity;
 
 /**
  * @author puhanhui
  * @version 1.0
- * @date 2016/9/14
+ * @date 2016/9/17
  * @since 1.0
  */
-public class TestListActivity extends BaseActivity<TestListPresenter> implements ITestListView {
+public class TestListActivity extends BaseListActivity<TestListPresenter,TestListAdapter> implements ITestListView {
+
+
     @Override
     protected void setActivityComponent(ActivityComponent activityComponent) {
         activityComponent.inject(this);
     }
 
+
+    @NonNull
     @Override
-    protected int getLayoutId() {
-        return 0;
+    protected TestListAdapter getAdapter() {
+        return new TestListAdapter(this);
     }
 
     @Override
-    public void setViewState(int state) {
-
+    protected void loadData(int loadType) {
+        presenter.loadName(loadType);
     }
 
+    @NonNull
     @Override
-    public void displayDialog(int dialogType) {
-
+    protected RecyclerView.LayoutManager getLayoutManger() {
+        return new LinearLayoutManager(this);
     }
 
+    @NonNull
     @Override
-    public void hideDialog(int... dialogType) {
-
+    protected RecyclerView.ItemDecoration getItemDecoration() {
+        return null;
     }
 }

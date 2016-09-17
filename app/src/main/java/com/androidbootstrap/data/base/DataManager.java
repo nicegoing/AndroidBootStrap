@@ -1,7 +1,11 @@
 package com.androidbootstrap.data.base;
 
+import com.androidbootstrap.bean.Name;
 import com.androidbootstrap.bean.Person;
+import com.androidbootstrap.rx.ListResult;
 import com.androidbootstrap.util.SpHelper;
+
+import java.util.List;
 
 import rx.Observable;
 
@@ -23,4 +27,6 @@ public interface DataManager {
     String readEmail();
 
     Observable<Person> loadProfile();
+
+    Observable<ListResult<List<Name>>> loadName();
 }
