@@ -133,6 +133,10 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
 
     /**
      * 通过add的方式显示指定的Fragment
+     *
+     * @param containerViewId Fragment容器
+     * @param classFactory    该类用于传递Fragment的构造方法
+     * @param <T>             需要添加的Fragment泛型参数
      */
     public <T extends Fragment> void showFragment(@IdRes int containerViewId, ClassFactory<T> classFactory) {
         List<Fragment> fragments = getSupportFragmentManager().getFragments();
