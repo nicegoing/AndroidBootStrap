@@ -1,4 +1,4 @@
-package com.library.ui.base;
+package com.androidbootstrap.ui.base.fragment;
 
 import android.app.Dialog;
 import android.content.DialogInterface;

@@ -4,7 +4,7 @@ import com.androidbootstrap.bean.Person;
 import com.androidbootstrap.data.base.DataManager;
 import com.androidbootstrap.rx.ProgressSubscriber;
 import com.androidbootstrap.rx.StateSubscriber;
-import com.androidbootstrap.ui.base.BasePresenter;
+import com.androidbootstrap.ui.base.presenter.BasePresenter;
 import com.androidbootstrap.util.LogUtil;
 import com.androidbootstrap.util.ToastUtil;
 

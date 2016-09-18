@@ -1,6 +1,6 @@
 package com.androidbootstrap.ui.list;
 
-import com.androidbootstrap.ui.base.IListView;
+import com.androidbootstrap.ui.base.view.IListView;
 
 /**
  * @author puhanhui

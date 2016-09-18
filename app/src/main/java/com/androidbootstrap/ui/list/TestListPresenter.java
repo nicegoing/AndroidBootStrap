@@ -4,7 +4,7 @@ import com.androidbootstrap.bean.Name;
 import com.androidbootstrap.data.base.DataManager;
 import com.androidbootstrap.rx.ListResult;
 import com.androidbootstrap.rx.ListSubscriber;
-import com.androidbootstrap.ui.base.BasePresenter;
+import com.androidbootstrap.ui.base.presenter.BasePresenter;
 
 import java.util.List;
 

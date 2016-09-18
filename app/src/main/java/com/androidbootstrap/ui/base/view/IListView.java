@@ -1,4 +1,4 @@
-package com.androidbootstrap.ui.base;
+package com.androidbootstrap.ui.base.view;
 
 import java.util.List;
 

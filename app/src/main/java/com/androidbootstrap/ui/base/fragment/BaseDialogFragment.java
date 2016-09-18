@@ -1,4 +1,4 @@
-package com.library.ui.base;
+package com.androidbootstrap.ui.base.fragment;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 /**
+ * 对DialogFragment的封装，处理重复调用DialogFragment报错的Bug
+ *
  * @author puhanhui
  * @version 1.0
  * @date 2016/8/6

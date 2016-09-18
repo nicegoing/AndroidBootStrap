@@ -8,7 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.androidbootstrap.R;
 import com.androidbootstrap.constant.Constants;
 import com.androidbootstrap.inject.component.ActivityComponent;
-import com.androidbootstrap.ui.base.BaseActivity;
+import com.androidbootstrap.ui.base.activity.BaseActivity;
 import com.androidbootstrap.util.LogUtil;
 import com.library.ui.view.MultiStateView;
 import com.library.ui.view.SmartRecyclerView;

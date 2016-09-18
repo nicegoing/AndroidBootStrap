@@ -3,7 +3,7 @@ package com.androidbootstrap.rx;
 import com.androidbootstrap.constant.Constants;
 import com.androidbootstrap.rx.error.DefaultErrorBundle;
 import com.androidbootstrap.rx.error.ErrorHanding;
-import com.androidbootstrap.ui.base.IListView;
+import com.androidbootstrap.ui.base.view.IListView;
 import com.library.ui.view.MultiStateView;
 
 import rx.Subscriber;

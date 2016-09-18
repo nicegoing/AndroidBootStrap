@@ -1,6 +1,4 @@
-package com.androidbootstrap.ui.base;
-
-import com.library.ui.base.IView;
+package com.androidbootstrap.ui.base.view;
 
 /**
  * @author puhanhui
