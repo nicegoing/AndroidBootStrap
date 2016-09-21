@@ -38,6 +38,8 @@ ext {
                     "robolectric"         : "org.robolectric:robolectric:3.1.2",
                     "DaggerMock"          : "com.github.fabioCollini:DaggerMock:0.6.2",
                     "logger"              : "com.orhanobut:logger:1.15",
-                    "circularprogressview": "com.github.rahatarmanahmed:circularprogressview:2.5.0"
+                    "circularprogressview": "com.github.rahatarmanahmed:circularprogressview:2.5.0",
+                    "oklog3"              : "com.github.simonpercic:oklog3:1.0.1"
+
     ]
 }

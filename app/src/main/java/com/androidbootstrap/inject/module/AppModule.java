@@ -9,6 +9,7 @@ import com.androidbootstrap.data.base.DataManager;
 import com.androidbootstrap.data.db.DBOpenHelper;
 import com.androidbootstrap.data.retrofit.RetrofitService;
 import com.androidbootstrap.util.SpHelper;
+import com.github.simonpercic.oklog3.OkLogInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.sqlbrite.BriteDatabase;
@@ -63,7 +64,7 @@ public class AppModule {
     @Provides
     @Singleton
     BriteDatabase ProvideBriteDb(DBOpenHelper dbOpenHelper) {
-        BriteDatabase briteDatabase= SqlBrite.create().wrapDatabaseHelper(dbOpenHelper, Schedulers.io());
+        BriteDatabase briteDatabase = SqlBrite.create().wrapDatabaseHelper(dbOpenHelper, Schedulers.io());
         briteDatabase.setLoggingEnabled(true);
         return briteDatabase;
     }
@@ -89,11 +90,14 @@ public class AppModule {
     OkHttpClient provideOkHttpClient() {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkLogInterceptor okLogInterceptor = OkLogInterceptor.builder().build();
+
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(Constants.HTTP_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
                 .connectTimeout(Constants.HTTP_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
-//                .addInterceptor(loggingInterceptor)
-//                .addNetworkInterceptor(new StethoInterceptor())
+                .addInterceptor(okLogInterceptor)
+                .addInterceptor(loggingInterceptor)
+                //                .addNetworkInterceptor(new StethoInterceptor())
                 .build();
 
         return okHttpClient;

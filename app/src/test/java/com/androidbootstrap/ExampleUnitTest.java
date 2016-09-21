@@ -1,5 +1,7 @@
 package com.androidbootstrap;
 
+import com.androidbootstrap.util.ClassFactory;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -22,10 +24,13 @@ public class ExampleUnitTest {
     @Test
     public void sub() throws Exception {
         List<String> list = new ArrayList();
-        list.add("1");
-        list.add("1");
-        list.addAll(list);
-        assertEquals(list.size(),4);
+        ClassFactory classFactory = new ClassFactory<List>(List.class) {
+            @Override
+            public List create() {
+                return null;
+            }
+        };
+        System.out.print(classFactory.getClazz().getCanonicalName());
     }
 
 }

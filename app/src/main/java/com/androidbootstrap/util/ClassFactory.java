@@ -11,6 +11,10 @@ package com.androidbootstrap.util;
 public abstract class ClassFactory<T> {
     public Class<T> clazz;
 
+    public ClassFactory(Class<T> clazz) {
+        this.clazz = clazz;
+    }
+
     public abstract T create();
 
     public Class<T> getClazz() {

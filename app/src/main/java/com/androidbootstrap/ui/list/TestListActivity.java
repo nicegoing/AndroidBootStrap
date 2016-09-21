@@ -6,10 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.androidbootstrap.R;
 import com.androidbootstrap.inject.component.ActivityComponent;
 import com.androidbootstrap.ui.base.activity.BaseListActivity;
-import com.androidbootstrap.util.ClassFactory;
 
 /**
  * @author puhanhui
@@ -52,11 +50,11 @@ public class TestListActivity extends BaseListActivity<TestListPresenter,TestLis
     protected void initView(@Nullable Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
-        showFragment(R.id.nav_view, new ClassFactory<TestFragment>() {
-            @Override
-            public TestFragment create() {
-                return new TestFragment();
-            }
-        });
+//        showFragment(R.id.nav_view, new ClassFactory<TestFragment>(TestFragment.class) {
+//            @Override
+//            public TestFragment create() {
+//                return new TestFragment();
+//            }
+//        });
     }
 }

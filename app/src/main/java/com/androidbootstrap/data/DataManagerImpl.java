@@ -99,6 +99,12 @@ public class DataManagerImpl implements DataManager {
     @Override
     public Observable<ListResult<List<Name>>> loadName() {
         return retrofitService.loadName()
+                .doOnNext(new Action1<ApiResponse<ListResult<List<Name>>>>() {
+                    @Override
+                    public void call(ApiResponse<ListResult<List<Name>>> listResultApiResponse) {
+                        SystemClock.sleep(1000);
+                    }
+                })
                 .compose(RxResultHelper.<ListResult<List<Name>>>handleResult())
                 .compose(RxSchedulersHelper.<ListResult<List<Name>>>applyIoSchedulers());
     }

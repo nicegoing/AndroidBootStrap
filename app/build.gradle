@@ -28,10 +28,9 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':library')
-    testCompile 'junit:junit:4.12'
-    testCompile  rootProject.ext.dependencies["mockito"]
-    testCompile  rootProject.ext.dependencies["robolectric"]
-    testCompile  rootProject.ext.dependencies["DaggerMock"]
+    testCompile rootProject.ext.dependencies["mockito"]
+    testCompile rootProject.ext.dependencies["robolectric"]
+    testCompile rootProject.ext.dependencies["DaggerMock"]
     compile rootProject.ext.dependencies["butterknife"]
     apt rootProject.ext.dependencies["butterknife-compiler"]
     compile rootProject.ext.dependencies["dagger"]
@@ -51,6 +50,9 @@ dependencies {
     compile rootProject.ext.dependencies["stetho"]
     compile rootProject.ext.dependencies["stetho-okhttp3"]
     compile rootProject.ext.dependencies["logger"]
+    compile rootProject.ext.dependencies["oklog3"]
     apt rootProject.ext.dependencies["multidex"]
     apt rootProject.ext.dependencies["design"]
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    testCompile 'junit:junit:4.12'
 }
