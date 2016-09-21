@@ -123,7 +123,8 @@ public class DataManagerImpl implements DataManager {
     /**
      * 打印数据库Person数据
      */
-    void readProfile() {
+    @Override
+    public void readProfile() {
         List<Person> persons = new ArrayList<>();
         Cursor cursor = db.query(Person.SELECT_ALL, new String[]{});
         cursor.moveToPrevious();

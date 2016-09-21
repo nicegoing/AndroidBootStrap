@@ -29,4 +29,6 @@ public interface DataManager {
     Observable<Person> loadProfile();
 
     Observable<ListResult<List<Name>>> loadName();
+
+    void readProfile();
 }
