@@ -41,9 +41,7 @@ public class RetrofitServiceMockImpl implements RetrofitService {
                 "    }\n" +
                 "  }\n" +
                 "}";
-//        return getResp(json);
-        return Observable.just((ApiResponse<Person>)gson.fromJson(json, new TypeToken<ApiResponse<Person>>() {
-        }.getType()));
+        return getResponse(json,new TypeToken<ApiResponse<Person>>(){});
     }
 
     @Override
@@ -51,9 +49,8 @@ public class RetrofitServiceMockImpl implements RetrofitService {
         return null;
     }
 
-    public static <T> Observable<ApiResponse<T>> getResp(String str) {
-        ApiResponse<T> resp = gson.fromJson(str, new TypeToken<ApiResponse<T>>() {
-        }.getType());
-        return Observable.just(resp);
+    public static <T> Observable<ApiResponse<T>> getResponse(String str,TypeToken<ApiResponse<T>> typeToken) {
+        ApiResponse<T> resp = gson.fromJson(str, typeToken.getType());
+        return  Observable.just(resp);
     }
 }
