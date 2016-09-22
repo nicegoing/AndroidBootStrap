@@ -46,7 +46,16 @@ public class RetrofitServiceMockImpl implements RetrofitService {
 
     @Override
     public Observable<ApiResponse<ListResult<List<Name>>>> loadName() {
-        return null;
+        String json="{\n" +
+                "    \"code\": \"200\",\n" +
+                "    \"msg\":\"success\",\n" +
+                "    \"result\": {\n" +
+                "        \"page\":1,\n" +
+                "        \"pageCount\":10,\n" +
+                "        \"list\":[{\"name\":\"a\"},{\"name\":\"b\"},{\"name\":\"c\"},{\"name\":\"d\"},{\"name\":\"e\"},{\"name\":\"f\"},{\"name\":\"h\"}]\n" +
+                "    }\n" +
+                "}";
+        return getResponse(json,new TypeToken<ApiResponse<ListResult<List<Name>>>>(){});
     }
 
     public static <T> Observable<ApiResponse<T>> getResponse(String str,TypeToken<ApiResponse<T>> typeToken) {
