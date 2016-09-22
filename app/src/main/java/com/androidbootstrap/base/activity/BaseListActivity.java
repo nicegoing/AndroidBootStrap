@@ -1,4 +1,4 @@
-package com.androidbootstrap.ui.base.activity;
+package com.androidbootstrap.base.activity;
 
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
@@ -9,9 +9,9 @@ import android.support.v7.widget.RecyclerView;
 
 import com.androidbootstrap.R;
 import com.androidbootstrap.constant.Constants;
-import com.androidbootstrap.ui.base.BaseListAdapter;
-import com.androidbootstrap.ui.base.presenter.IPresenter;
-import com.androidbootstrap.ui.base.view.IListView;
+import com.androidbootstrap.base.BaseListAdapter;
+import com.androidbootstrap.base.presenter.IPresenter;
+import com.androidbootstrap.base.view.IListView;
 import com.androidbootstrap.util.LogUtil;
 import com.library.ui.view.MultiStateView;
 import com.library.ui.view.SmartRecyclerView;

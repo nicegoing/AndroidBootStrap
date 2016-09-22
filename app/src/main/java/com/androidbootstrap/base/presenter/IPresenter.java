@@ -1,6 +1,6 @@
-package com.androidbootstrap.ui.base.presenter;
+package com.androidbootstrap.base.presenter;
 
-import com.androidbootstrap.ui.base.view.IView;
+import com.androidbootstrap.base.view.IView;
 
 /**
  * @author puhanhui

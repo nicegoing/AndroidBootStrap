@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.androidbootstrap.inject.component.ActivityComponent;
-import com.androidbootstrap.ui.base.activity.BaseListActivity;
+import com.androidbootstrap.base.activity.BaseListActivity;
 
 /**
  * @author puhanhui

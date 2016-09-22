@@ -2,7 +2,7 @@ package com.androidbootstrap.rx;
 
 import com.androidbootstrap.rx.error.DefaultErrorBundle;
 import com.androidbootstrap.rx.error.ErrorHanding;
-import com.androidbootstrap.ui.base.view.IStateView;
+import com.androidbootstrap.base.view.IStateView;
 import com.library.constant.Constant;
 
 import rx.Subscriber;

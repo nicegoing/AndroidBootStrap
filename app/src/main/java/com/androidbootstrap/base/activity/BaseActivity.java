@@ -1,4 +1,4 @@
-package com.androidbootstrap.ui.base.activity;
+package com.androidbootstrap.base.activity;
 
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
@@ -14,8 +14,8 @@ import com.androidbootstrap.R;
 import com.androidbootstrap.inject.component.ActivityComponent;
 import com.androidbootstrap.inject.component.AppComponent;
 import com.androidbootstrap.inject.component.DaggerActivityComponent;
-import com.androidbootstrap.ui.base.presenter.IPresenter;
-import com.androidbootstrap.ui.base.view.IView;
+import com.androidbootstrap.base.presenter.IPresenter;
+import com.androidbootstrap.base.view.IView;
 import com.androidbootstrap.util.ClassFactory;
 import com.androidbootstrap.util.ResourceUtil;
 

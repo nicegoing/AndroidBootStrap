@@ -1,4 +1,4 @@
-package com.androidbootstrap.ui.base.fragment;
+package com.androidbootstrap.base.fragment;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;

@@ -18,11 +18,11 @@ import android.widget.TextView;
 import com.androidbootstrap.R;
 import com.androidbootstrap.bean.Person;
 import com.androidbootstrap.inject.component.ActivityComponent;
-import com.androidbootstrap.ui.base.activity.BaseActivity;
+import com.androidbootstrap.base.activity.BaseActivity;
 import com.androidbootstrap.ui.list.TestListActivity;
 import com.androidbootstrap.util.ToastUtil;
 import com.library.constant.Constant;
-import com.androidbootstrap.ui.base.fragment.LoadingDialogFragment;
+import com.androidbootstrap.base.fragment.LoadingDialogFragment;
 import com.library.ui.view.MultiStateView;
 
 import butterknife.BindView;

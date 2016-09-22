@@ -1,4 +1,4 @@
-package com.androidbootstrap.ui.base;
+package com.androidbootstrap.base;
 
 import android.support.v7.widget.RecyclerView;
 

@@ -1,4 +1,4 @@
-package com.androidbootstrap.ui.base.fragment;
+package com.androidbootstrap.base.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
@@ -15,8 +15,8 @@ import com.androidbootstrap.R;
 import com.androidbootstrap.inject.component.AppComponent;
 import com.androidbootstrap.inject.component.DaggerFragmentComponent;
 import com.androidbootstrap.inject.component.FragmentComponent;
-import com.androidbootstrap.ui.base.presenter.IPresenter;
-import com.androidbootstrap.ui.base.view.IView;
+import com.androidbootstrap.base.presenter.IPresenter;
+import com.androidbootstrap.base.view.IView;
 import com.androidbootstrap.util.ResourceUtil;
 
 import org.greenrobot.eventbus.EventBus;

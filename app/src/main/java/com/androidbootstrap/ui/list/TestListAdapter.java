@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.androidbootstrap.R;
+import com.androidbootstrap.base.BaseListAdapter;
 import com.androidbootstrap.bean.Name;
-import com.androidbootstrap.ui.base.BaseListAdapter;
 
 /**
  * @author puhanhui

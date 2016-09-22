@@ -1,7 +1,7 @@
 package com.androidbootstrap.ui.main;
 
 import com.androidbootstrap.bean.Person;
-import com.androidbootstrap.ui.base.view.IStateView;
+import com.androidbootstrap.base.view.IStateView;
 
 /**
  * @author puhanhui
